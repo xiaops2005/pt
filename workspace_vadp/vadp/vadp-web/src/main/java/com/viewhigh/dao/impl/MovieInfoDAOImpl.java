@@ -23,7 +23,7 @@ import com.viewhigh.vadp.framework.data.base.dao.BaseHibernateDAO;
 import com.viewhigh.vadp.framework.util.StringUtil;
 
 @Repository
-@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW )
+@Transactional(propagation = Propagation.REQUIRES_NEW )
 public class MovieInfoDAOImpl extends BaseHibernateDAO implements IMovieInfoDAO {
 
 	@Override

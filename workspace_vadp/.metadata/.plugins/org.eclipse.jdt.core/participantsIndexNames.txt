@@ -1,3 +1,0 @@
-INDEX VERSION 1.129
-C:\workspace_pt\workspace_vadp\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3887611419.index
-\com.viewhigh.vadp.framework.web\src\main\java
