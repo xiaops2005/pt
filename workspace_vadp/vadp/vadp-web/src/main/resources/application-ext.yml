@@ -1,0 +1,7 @@
+# 配置扩展属性
+vh:
+  log:
+    sql:
+      show: false  # 显示所有查询SQL
+      time-out: 60  # 慢sql查询，超限的sql会被展示，单位：s
+      anno: true  # 根据注解LogSqlShow显示SQL

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-3.1.xsd
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+						http://www.springframework.org/schema/task
+						http://www.springframework.org/schema/task/spring-task-3.1.xsd">
+
+	<!--扫描所有注解  -->
+	<context:component-scan base-package="com.viewhigh.*"></context:component-scan>
+	<bean class="com.viewhigh.vadp.framework.data.util.SpringContextUtil"></bean>
+	<!-- 数据源配置 -->
+	<bean id="vadp.baseDataSource" class="com.viewhigh.vadp.framework.data.datasource.DynamicDataSource" primary="true">
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<entry key="ds1" value-ref="vadp.ds1" />
+				<entry key="ds2" value-ref="vadp.ds2" />
+				<entry key="ds3" value-ref="vadp.ds3" />
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="vadp.defaultDataSource" />
+	</bean>
+	<bean id="vadp.defaultDataSource" class="org.apache.commons.dbcp.BasicDataSource" >
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://192.168.1.48:3306/vh?useunicode=true" />
+		<property name="username" value="root" />
+		<property name="password" value="vhsa" />
+		<property name="maxActive" value="10" />
+		<property name="maxWait" value="5000" />
+	</bean>
+	<bean id="vadp.ds1" class="org.apache.commons.dbcp.BasicDataSource" >
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://192.168.1.48:3306/vh?useunicode=true" />
+		<property name="username" value="root" />
+		<property name="password" value="vhsa" />
+		<property name="maxActive" value="10" />
+		<property name="maxWait" value="5000" />
+	</bean>
+	<bean id="vadp.ds2" class="org.apache.commons.dbcp.BasicDataSource" >
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://192.168.1.48:3306/vh?useunicode=true" />
+		<property name="username" value="root" />
+		<property name="password" value="vhsa" />
+		<property name="maxActive" value="10" />
+		<property name="maxWait" value="5000" />
+	</bean>
+	<bean id="vadp.ds3" class="org.apache.commons.dbcp.BasicDataSource" >
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://192.168.1.48:3306/vh1?useunicode=true" />
+		<property name="username" value="root" />
+		<property name="password" value="vhsa" />
+		<property name="maxActive" value="10" />
+		<property name="maxWait" value="5000" />
+	</bean>
+	
+	
+	<!-- JPA实体管理器工厂 -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="vadp.baseDataSource" />
+		<property name="persistenceProvider" ref="persistenceProvider" />
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+		<property name="jpaDialect" ref="jpaDialect" />
+		<property name="packagesToScan" value="com.viewhigh.*" />
+
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.max_fetch_depth">3</prop>
+				<prop key="hibernate.jdbc.fetch_size">18</prop>
+				<prop key="hibernate.jdbc.batch_size">10</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="javax.persistence.validation.mode">none</prop>
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
+	<!-- 用于指定持久化实现厂商类 -->
+	<bean id="persistenceProvider" class="org.hibernate.ejb.HibernatePersistence" />
+	
+	
+	<!-- 用于设置JPA实现厂商的特定属性 -->
+	<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
+		p:database="MYSQL" />
+		
+		
+	<!-- 用于指定一些高级特性 -->
+	<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+	<bean class="org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean" id="sessionFactory"></bean>
+	<!-- 事务管理器 -->
+	<!-- <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+		p:entityManagerFactory-ref="entityManagerFactory" />
+	 -->
+<!-- 	<tx:annotation-driven/>
+ -->	
+ 	<!-- <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
+		p:dataSource-ref="dataSource" p:packagesToScan="com.sharp.ssh.domain">
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="javax.persistence.validation.mode">none</prop>
+			</props>
+		</property>
+	</bean> -->
+	<!-- <bean class="org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean" id="sessionFactory">         
+        <property name="dataSource" ref="vadp.baseDataSource"></property>         
+        
+        <property name="packagesToScan" value="com.viewhigh.vadp"> </property>         
+        <property name="hibernateProperties">             
+            <props>                 
+            <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>                 
+            <prop key="hibernate.show_sql">true</prop>
+            <prop key="hibernate.format_sql">true</prop>
+            <prop key="javax.persistence.validation.mode">none</prop>
+            
+            <prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProviderr</prop>                 
+            <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>                                 
+            <prop key="hibernate.cache.provider_configuration_file_resource_path">ehcache/ehcache-hibernate-local.xml</prop>  
+                           
+            <prop key="current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>                  
+            <prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>         
+            <prop key="hibernate.cache.use_second_level_cache">true</prop>        
+            <prop key="hibernate.cache.use_query_cache">false</prop>          
+            <prop key="jdbc.use_scrollable_resultset">false</prop>        
+            <prop key="hibernate.transaction.auto_close_session">false</prop>            
+            </props>        
+         </property>
+     </bean>  -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory"/>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="baseTxAdvisor"
+		class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<property name="advice">
+			<bean
+				class="org.springframework.transaction.interceptor.TransactionInterceptor">
+				<property name="transactionManager">
+					<ref bean="transactionManager" />
+				</property>
+				<property name="transactionAttributes">
+					<props>
+						<prop key="add*">PROPAGATION_REQUIRED,-Exception
+						</prop>
+						<prop key="create*">PROPAGATION_REQUIRED,-Exception
+						</prop>
+						<prop key="update*">PROPAGATION_REQUIRED,-Exception
+						</prop>
+						<prop key="config*">PROPAGATION_REQUIRED,-Exception
+						</prop>
+						<prop key="delete*">PROPAGATION_REQUIRED,-Exception
+						</prop>
+						<prop key="save*">PROPAGATION_REQUIRED,-Exception
+						</prop>
+						<prop key="do*">PROPAGATION_REQUIRED,-Exception
+						</prop>
+						<prop key="register*">PROPAGATION_REQUIRED,-Exception
+						</prop>
+						<prop key="remove*">PROPAGATION_REQUIRED,-Exception
+						</prop>
+						<prop key="start*">PROPAGATION_REQUIRED,-Exception
+						</prop>
+						<prop key="pause*">PROPAGATION_REQUIRED,-Exception
+						</prop>
+						<prop key="exchange*">PROPAGATION_REQUIRED,-Exception
+						</prop>
+						<prop key="import*">PROPAGATION_REQUIRED,-Exception
+						</prop>
+						<prop key="test*">PROPAGATION_REQUIRED,-Exception
+						</prop>
+						<prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
+						<prop key="query*">PROPAGATION_REQUIRED,readOnly</prop>
+						<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+						<prop key="*">PROPAGATION_REQUIRED,-Exception
+						</prop> 
+					</props>
+				</property>
+			</bean>
+		</property>
+		<property name="patterns">
+			<list>
+				<value>.*\.bo\..*</value>
+				<value>.*BO\..*</value>
+				<value>.*Bo\..*</value>
+				<value>.*Service\..*</value>
+				<value>.*ServiceImpl\..*</value>
+			</list>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,15 @@
+.class-buttons {
+  margin: 5px;
+}
+
+.class-buttons Button {
+  margin-right: 8px;
+}
+
+.dict-table {
+  height: 100%;
+}
+
+.cell-select {
+  width: 100%
+}

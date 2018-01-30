@@ -1,0 +1,28 @@
+let ReMateDetailModel = function () {
+  this.pkMateOriginal = "";
+  this.pkHospital = "";
+  this.accYear = null;
+  this.pkDept = "";
+  this.pkMaterials = "";
+  this.quantity = null;
+  this.unitPrice = null;
+  this.amount = null;
+  this.pkDeptMerge = "";
+  this.pkDeptCost = "";
+  this.pkChargeClass = "";
+  this.isCharges = "";
+  this.isInherit = "";
+  this.isPublic = "";
+  this.statusId = "";
+  this.creator = "";
+  this.creationtime = null;
+  this.modifier = "";
+  this.modifiedtime = null;
+  this.approver = "";
+  this.approvetime = null;
+  this.approvenote = "";
+  this.dr = 0;
+  this.ts = null;
+  this.$$editable = true;
+};
+export {ReMateDetailModel}

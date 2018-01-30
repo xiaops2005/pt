@@ -1,0 +1,230 @@
+
+
+ul li{
+  margin-bottom:0;
+}
+
+.div_supplier {
+  width: 100%;
+}
+
+.div_left {
+  float: left;
+  width: 18%;
+}
+
+.div_left .sys_title {
+  line-height: 3rem;
+  font-size: 2rem;
+  padding-left: 1rem;
+  color: #00aced;
+}
+
+.div_category {
+  background-color: #fff;
+  padding: 2rem;
+}
+
+.div_category .sp_category {
+  font-weight: bold;
+  font-size: 1rem;
+  padding-top: 10px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.div_category .sp_category:hover {
+  color: #00aced;
+}
+
+.div_category ul {
+  padding-top: 1rem;
+}
+
+.div_category ul li {
+  line-height: 2rem;
+  cursor: pointer;
+}
+
+.div_category ul li:hover {
+  color: #00aced;
+}
+
+.div_category ul li.active {
+  color: #00aced;
+  font-size: 1rem;
+}
+
+.div_right {
+  width: 82%;
+  float: left;
+  padding: 0 2rem;
+}
+
+.div_search {
+  width: 100%;
+  line-height: 2rem;
+  padding-bottom: 10px;
+}
+
+.div_search .div_item {
+  padding-right: 1rem;
+  float: left;
+}
+
+.div_search .div_item .sp_title {
+  padding-right: 10px;
+}
+
+.div_search .div_item input {
+  width: inherit;
+}
+
+.pagination_r {
+  float: right;
+  text-align: right;
+  padding-bottom: 10px;
+}
+
+.ant-back-top {
+  right: 20px !important;
+}
+
+.ant-row {
+  margin-bottom: 20px;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.ant-row > div {
+  padding: 15px 15px 5px;
+}
+
+.custom-card {
+  text-align: center;
+  padding-bottom: 5px;
+  position: relative;
+}
+
+.custom-card p {
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 1.2rem;
+  color: #000;
+}
+
+.div_opt{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  background-color: #ccc;
+}
+.div_opt ul li{
+  float:left;
+  text-align: center;
+  width: 18%;
+}
+
+.div_opt ul li i{
+  cursor: pointer;
+}
+
+.div_opt ul li.icon-m-p{
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+.div_opt ul li.li-span{
+  width: 24%;
+  line-height: 26px;
+}
+.div_opt ul li.icon-shopping{
+  width: 40%;
+  line-height: 26px;
+  background-color: #00A8E6;
+}
+.custom-card p:last-child {
+  width: 100%;
+  display: inline-block;
+  color: #999;
+  font-size: 12px;
+  line-height: 30px;
+}
+
+.custom-card p span {
+  width: 50%;
+  display: inline-block;
+  text-align: center;
+}
+
+.custom-image {
+  text-align: center;
+  padding: 12px;
+}
+
+.custom-image img {
+  width: 120px;
+}
+
+.ant-card .ant-card-head {
+  height: 40px;
+  line-height: 40px;
+}
+
+.ant-card-head-title {
+  line-height: 40px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.ul_sortcol {
+  float: left;
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.ul_sortcol li {
+  float: left;
+  width: 100px;
+  background-color: #eee;
+  padding-left: 10px;
+  margin-right: 6px;
+  line-height: 36px;
+
+}
+
+.ul_sortcol li.cur {
+  background-color: #10A8E6;
+  color: #fff;
+}
+
+.ul_sortcol li div {
+  position: relative;
+  width: 26px;
+  float: right;
+  font-weight: bold;
+  height: 36px;
+  color: #000;
+}
+
+.ul_sortcol li div .spasc {
+  line-height: 18px;
+  position: absolute;
+  top: 4px;
+  cursor: pointer;
+}
+
+.ul_sortcol li div .spdesc {
+  line-height: 12px;
+  position: absolute;
+  bottom: 4px;
+  cursor: pointer;
+}
+
+.ul_sortcol li div span:hover, .ul_sortcol li div span.active {
+  color: #00aced;
+}
+.ul_sortcol li.cur div span:hover, .ul_sortcol li.cur div span.active {
+  color: #fff;
+}

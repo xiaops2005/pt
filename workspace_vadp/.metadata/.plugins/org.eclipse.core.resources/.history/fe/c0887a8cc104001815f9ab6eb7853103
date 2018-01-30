@@ -1,0 +1,6 @@
+package com.viewhigh;
+
+public class Constants {
+	//调用豆瓣的时间间隔（最多10秒调用一次）
+	public static long INVOKE_DOUBAN_INTERVAL = 10*1000L;
+}

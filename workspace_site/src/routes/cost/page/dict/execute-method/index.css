@@ -1,0 +1,22 @@
+/* 复写组件布局样式 不显示滚动条 */
+.ant-layout-content {
+    overflow: hidden !important;
+}
+
+/* 页面组件 不显示滚动条 */
+.vh-content {
+    overflow: hidden;
+}
+
+/* 数据操作按钮 */
+.vh-body .table-operations {
+    margin-bottom: 10px;
+}
+.vh-body .table-operations Button {
+    margin-right: 8px;
+}
+
+/* 数据展示 */
+.vh-body .main-section{
+    overflow: auto;
+}

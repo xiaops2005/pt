@@ -1,0 +1,232 @@
+package com.viewhigh.entity;
+
+
+import com.viewhigh.excel.domain.Base;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+@XmlRootElement
+@Entity
+@Table(name = "movie_info")
+public class MovieInfo {
+
+	@Id
+	@GenericGenerator(name = "idGenerator", strategy = "uuid") // 这个是hibernate的注解/生成32位UUID
+	@GeneratedValue(generator = "idGenerator")
+	@Column(name = "ID")
+	private String id;
+	
+	@Column(name = "title")
+	private String title;
+	
+	@Column(name = "rating")
+	private String rating;
+	
+	@Column(name = "year")
+	private String year;
+	
+	@Column(name = "small_image")
+	private String smallImage;
+	
+	@Column(name = "medium_image")
+	private String mediumImage;
+	
+	@Column(name = "large_image")
+	private String largeImage;
+	
+	@Column(name = "alt")
+	private String alt;
+	
+	@Column(name = "countries")
+	private String countries;
+	
+	@Column(name = "genres")
+	private String genres;
+	
+	@Column(name = "current_season")
+	private String currentSeason;
+	
+	@Column(name = "original_title")
+	private String originalTitle;
+	
+	@Column(name = "summary")
+	private String summary;
+	
+	@Column(name = "subtype")
+	private String subtype;
+	
+	@Column(name = "akas")
+	private String akas;
+	
+	@Column(name = "create_time")
+	private Date createTime;
+	
+	@Column(name = "update_time")
+	private Date updateTime;
+	
+	@Column(name = "casts")
+	private String casts;
+	
+	@Column(name = "directors")
+	private String directors;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getRating() {
+		return rating;
+	}
+
+	public void setRating(String rating) {
+		this.rating = rating;
+	}
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public String getSmallImage() {
+		return smallImage;
+	}
+
+	public void setSmallImage(String smallImage) {
+		this.smallImage = smallImage;
+	}
+
+	public String getMediumImage() {
+		return mediumImage;
+	}
+
+	public void setMediumImage(String mediumImage) {
+		this.mediumImage = mediumImage;
+	}
+
+	public String getLargeImage() {
+		return largeImage;
+	}
+
+	public void setLargeImage(String largeImage) {
+		this.largeImage = largeImage;
+	}
+
+	public String getAlt() {
+		return alt;
+	}
+
+	public void setAlt(String alt) {
+		this.alt = alt;
+	}
+
+	public String getCountries() {
+		return countries;
+	}
+
+	public void setCountries(String countries) {
+		this.countries = countries;
+	}
+
+	public String getGenres() {
+		return genres;
+	}
+
+	public void setGenres(String genres) {
+		this.genres = genres;
+	}
+
+	public String getCurrentSeason() {
+		return currentSeason;
+	}
+
+	public void setCurrentSeason(String currentSeason) {
+		this.currentSeason = currentSeason;
+	}
+
+	public String getOriginalTitle() {
+		return originalTitle;
+	}
+
+	public void setOriginalTitle(String originalTitle) {
+		this.originalTitle = originalTitle;
+	}
+
+	public String getSummary() {
+		return summary;
+	}
+
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
+
+	public String getSubtype() {
+		return subtype;
+	}
+
+	public void setSubtype(String subtype) {
+		this.subtype = subtype;
+	}
+
+	public String getAkas() {
+		return akas;
+	}
+
+	public void setAkas(String akas) {
+		this.akas = akas;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public Date getCasts() {
+		return casts;
+	}
+
+	public void setCasts(Date casts) {
+		this.casts = casts;
+	}
+
+	public Date getDirectors() {
+		return directors;
+	}
+
+	public void setDirectors(Date directors) {
+		this.directors = directors;
+	}
+	
+	
+
+}

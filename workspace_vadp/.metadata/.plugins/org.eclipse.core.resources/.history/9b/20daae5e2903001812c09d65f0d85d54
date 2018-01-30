@@ -1,0 +1,27 @@
+package com.viewhigh.entity;
+
+
+import com.viewhigh.excel.domain.Base;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+@XmlRootElement
+@Entity
+@Table(name = "movie_info")
+public class MovieInfo {
+
+	@Id
+	@GenericGenerator(name = "idGenerator", strategy = "uuid") // 这个是hibernate的注解/生成32位UUID
+	@GeneratedValue(generator = "idGenerator")
+	@Column(name = "ID")
+	private String id;
+	
+	@Column(name = "PK_HOSPIT")
+	private String title;
+
+}
