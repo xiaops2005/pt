@@ -1,3 +1,0 @@
-#Tomcat publish data
-#Tue Jan 30 10:11:10 CST 2018
-org.eclipse.jst.jee.server\:com.viewhigh.vadp.framework.web=C\:\\workspace_pt\\workspace_vadp\\.metadata\\.me_tcat85\\webapps\\api
