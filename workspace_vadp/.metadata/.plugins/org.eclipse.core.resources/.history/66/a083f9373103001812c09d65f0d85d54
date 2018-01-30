@@ -1,0 +1,10 @@
+package com.viewhigh.service;
+
+import com.viewhigh.entity.ReMateDetail;
+import com.viewhigh.excel.domain.entity.BdMaterials;
+
+import java.util.List;
+
+public interface MovieMgrService {
+    String getDoubanMovieInfo(String doubanId);
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="com.viewhigh.vadp.framework.data"/>
+<aop-project name="com.viewhigh.vadp.framework.web"/>
+<aop-project name="portal-core"/>
+<aop-project name="com.viewhigh.vadp.framework.core"/>
+<aop-project name="com.viewhigh.vadp.framework.exception"/>
+</aop-reference-model>

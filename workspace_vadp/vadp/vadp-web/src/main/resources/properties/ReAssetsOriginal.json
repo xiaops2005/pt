@@ -1,0 +1,191 @@
+{
+  "templateId": 3,
+  "templateName": "com.viewhigh.excel.domain.entity.ReAssetsOriginal",
+  "dbSchemaName": "",
+  "dbTableName": "re_assets_original",
+  "validator": "reAssetsOriginalValidator",
+  "primaryKey": "pk_assets_original",
+  "dictionaries": {
+    "BdDept": {
+    },
+    "BdAssets": {
+    },
+    "ReAssetsDetail": {
+    },
+    "BdCode": {
+      "paramNames": [
+        "codetypeId",
+        "codetypeId"
+      ],
+      "operater": [
+        "=",
+        "="
+      ],
+      "orand": [
+        "or",
+        "or"
+      ],
+      "dataType": [
+        "String",
+        "String"
+      ],
+      "defaultValue": [
+        "CAPITAL_SOURCE",
+        "IS_BUNKFEE"
+      ]
+    }
+  },
+  "columnTemplates": [
+    {
+      "id": 1,
+      "pos": 0,
+      "templateName": "年度",
+      "dbColumnName": "acc_year",
+      "beanColumnName": "accYear",
+      "type": "DECIMAL",
+      "isInsert": 1,
+      "required": 1
+    },
+    {
+      "id": 2,
+      "pos": 1,
+      "templateName": "月份",
+      "dbColumnName": "acc_month",
+      "beanColumnName": "accMonth",
+      "type": "DECIMAL",
+      "isInsert": 1,
+      "required": 1
+    },
+    {
+      "id": 3,
+      "pos": 2,
+      "templateName": "资产编码",
+      "beanColumnName": "assetsCode",
+      "type": "DECIMAL",
+      "isInsert": 0,
+      "required": 1
+    },
+    {
+      "id": 4,
+      "pos": 3,
+      "templateName": "资产名称",
+      "beanColumnName": "assetsName",
+      "type": "VARCHAR",
+      "isInsert": 0,
+      "required": 1
+    },
+    {
+      "id": 5,
+      "pos": 4,
+      "templateName": "资产科室编码",
+      "beanColumnName": "EQUIDeptCode",
+      "type": "VARCHAR",
+      "isInsert": 0,
+      "required": 1
+    },
+    {
+      "id": 6,
+      "pos": 5,
+      "templateName": "资产科室名称",
+      "beanColumnName": "EQUIDeptName",
+      "type": "VARCHAR",
+      "isInsert": 0,
+      "required": 1
+    },
+    {
+      "id": 7,
+      "pos": 6,
+      "templateName": "成本科室编码",
+      "beanColumnName": "CBCSDeptCode",
+      "type": "VARCHAR",
+      "isInsert": 0,
+      "required": 1
+    },
+    {
+      "id": 8,
+      "pos": 7,
+      "templateName": "成本科室名称",
+      "beanColumnName": "CBCSDeptName",
+      "type": "VARCHAR",
+      "isInsert": 0,
+      "required": 1
+    },
+    {
+      "id": 9,
+      "pos": 8,
+      "templateName": "开始使用时间",
+      "beanColumnName": "startDate",
+      "type": "VARCHAR",
+      "isInsert": 0,
+      "required": 1
+    },
+    {
+      "id": 10,
+      "pos": 9,
+      "templateName": "使用年限",
+      "beanColumnName": "durableYears",
+      "type": "VARCHAR",
+      "isInsert": 0,
+      "required": 1
+    },
+    {
+      "id": 11,
+      "pos": 10,
+      "templateName": "资产类别",
+      "beanColumnName": "assetsType",
+      "type": "VARCHAR",
+      "isInsert": 0,
+      "required": 0
+    },
+    {
+      "id": 12,
+      "pos": 11,
+      "templateName": "资产原值",
+      "beanColumnName": "originalValue",
+      "type": "DOUBLE",
+      "isInsert": 0,
+      "required": 1
+    },
+    {
+      "id": 13,
+      "pos": 12,
+      "templateName": "本年计提折旧",
+      "dbColumnName": "depreciation",
+      "beanColumnName": "depreciation",
+      "type": "DOUBLE",
+      "isInsert": 1,
+      "required": 1
+    },
+    {
+      "id": 14,
+      "pos": 13,
+      "templateName": "资金来源",
+      "dbColumnName": "capital_source_id",
+      "beanColumnName": "capitalSourceId",
+      "type": "VARCHAR",
+      "isInsert": 1,
+      "required": 1
+    },
+    {
+      "id": 15,
+      "pos": 14,
+      "templateName": "自筹比例(%)",
+      "dbColumnName": "ratio",
+      "beanColumnName": "ratio",
+      "type": "DOUBLE",
+      "isInsert": 1,
+      "required": 1
+    },
+    {
+      "id": 16,
+      "pos": 15,
+      "templateName": "是否床位费",
+      "dbColumnName": "is_bunkfee_id",
+      "beanColumnName": "isBunkfeeId",
+      "type": "VARCHAR",
+      "isInsert": 1,
+      "required": 0
+    }
+
+  ]
+}

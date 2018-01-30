@@ -1,0 +1,123 @@
+
+
+# Tomcat
+server:
+  compression:
+    enabled: true
+    min-response-size: 1
+  connection-timeout: 5000
+
+
+
+#上传配置
+multipart:
+  max-file-size: 50Mb
+  max-request-size: 50Mb
+
+
+spring:
+  ## 配置当前启用的环境
+  profiles:
+    active: ext
+  http:
+  ## 编码设置
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true
+  ## 下面为连接池的补充设置，应用到所有数据源中
+  datasource:
+    maximum-pool-size: 100
+    max-idle: 10
+    max-wait: 10000
+    min-idle: 5
+    initial-size: 5
+    test-on-borrow: false
+    test-while-idle: true
+    time-between-eviction-runs-millis: 18800
+
+  aop:
+    proxy-target-class: true # aop添加对无接口使用注解的支持
+    auto: true # 启用aop
+
+  #redis配置
+    # REDIS (RedisProperties)
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password:
+    pool:
+      max-active: 8
+      max-wait: -1
+      max-idle: 8
+      min-idle: 0
+    timeout: 0
+
+
+# 日志配置文件
+logging:
+  config: classpath:logback.xml
+  # classpath:logback.xml classpath:log4j2.xml
+
+#server.compression.enabled: true
+#server.compression.min-response-size: 1
+#server.connection-timeout=5000
+#########################################################
+####配置文件包括1个主数据源和多个数据源，
+####其中主数据源在Spring中的beanName默认为dataSource，
+####另外几个数据源的beanName分包为：ds1、ds2、ds3
+####其中datasource的type属性可以具体指定到我们需要的数据源上面，
+####不指定情况下默认为：org.apache.tomcat.jdbc.pool.DataSource
+#########################################################
+##主数据源
+##spring.datasource.url=jdbc:mysql://192.168.1.48:3306/vh?useunicode=true&characterEncoding=utf8
+##spring.datasource.username=root
+##spring.datasource.password=vhsa
+##spring.datasource.driverClassName=com.mysql.jdbc.Driver
+#
+## 下面为连接池的补充设置，应用到上面所有数据源中
+##spring.datasource.maximum-pool-size=100
+##spring.datasource.max-idle=10
+##spring.datasource.max-wait=10000
+##spring.datasource.min-idle=5
+##spring.datasource.initial-size=5
+##spring.datasource.validation-query=SELECT 1
+##spring.datasource.test-on-borrow=false
+##spring.datasource.test-while-idle=true
+##spring.datasource.time-between-eviction-runs-millis=18800
+##
+##spring.jpa.database=MYSQL
+##spring.jpa.hibernate.ddl-auto=update
+##spring.jpa.show-sql=true
+##spring.jpa.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+##spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+##spring.jpa.properties.hibernate.current_session_context_class=org.springframework.orm.hibernate4.SpringSessionContext
+#
+#
+##redis配置
+## REDIS (RedisProperties)
+#spring.redis.database=0
+#spring.redis.host=localhost
+#spring.redis.port=6379
+#spring.redis.password=
+#spring.redis.pool.max-active=8
+#spring.redis.pool.max-wait=-1
+#spring.redis.pool.max-idle=8
+#spring.redis.pool.min-idle=0
+#spring.redis.timeout=0
+##日志配置文件
+#logging.config=classpath:logback.xml
+#
+##上传配置
+#multipart.maxFileSize=50Mb
+#multipart.maxRequestSize=50Mb
+#
+##编码设置
+#spring.http.encoding.charset=UTF-8
+#spring.http.encoding.enabled=true
+#spring.http.encoding.force=true
+
+
+
+
