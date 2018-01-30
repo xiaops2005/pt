@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import cn.hutool.core.util.StrUtil;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +24,7 @@ import com.viewhigh.vadp.framework.data.base.dao.BaseHibernateDAO;
 import com.viewhigh.vadp.framework.util.StringUtil;
 
 @Repository
-@Transactional(propagation = Propagation.REQUIRES_NEW )
+@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW )
 public class MovieInfoDAOImpl extends BaseHibernateDAO implements IMovieInfoDAO {
 
 	@Override
@@ -49,6 +50,12 @@ public class MovieInfoDAOImpl extends BaseHibernateDAO implements IMovieInfoDAO 
 		mi.setId(id);
 		mi.setResponseJson(resultJson);
 		this.addObject(mi);
+	}
+
+	@Override
+	public void deleteByIds(String ids) {
+		String sql = "delete from movie_info where id in (" + ids + ")";
+		this.update(sql, null);
 	}
 
 }

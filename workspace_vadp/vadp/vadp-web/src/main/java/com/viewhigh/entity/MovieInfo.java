@@ -16,8 +16,8 @@ import java.util.Date;
 public class MovieInfo {
 
 	@Id
-	@GenericGenerator(name = "idGenerator", strategy = "uuid") // 这个是hibernate的注解/生成32位UUID
-	@GeneratedValue(generator = "idGenerator")
+//	@GenericGenerator(name = "idGenerator", strategy = "uuid") // 这个是hibernate的注解/生成32位UUID
+//	@GeneratedValue(generator = "idGenerator")
 	@Column(name = "id")
 	private String id;
 	
@@ -25,7 +25,7 @@ public class MovieInfo {
 	private String title;
 	
 	@Column(name = "rating")
-	private String rating;
+	private Float rating;
 	
 	@Column(name = "year")
 	private String year;
@@ -94,11 +94,11 @@ public class MovieInfo {
 		this.title = title;
 	}
 
-	public String getRating() {
+	public Float getRating() {
 		return rating;
 	}
 
-	public void setRating(String rating) {
+	public void setRating(Float rating) {
 		this.rating = rating;
 	}
 

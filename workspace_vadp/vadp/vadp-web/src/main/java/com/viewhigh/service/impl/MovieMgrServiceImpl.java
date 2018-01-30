@@ -12,6 +12,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -58,87 +59,10 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 	        response = client.execute(httpGet);  
 	        int code = response.getStatusLine().getStatusCode();  
 	        if (code == 200) {
+	        	lastInvokeTime = currentTime;
 	            resultJson = EntityUtils.toString(response.getEntity(), "utf-8");
 	    	    movieInfoDao.addResponseJson(doubanId, resultJson);
 	    	    return this.response2json(resultJson);
-//	            //评分
-//	            String rating = obj.getJSONObject("rating").getString("average");
-//	            System.out.println("rating"+rating);
-//	            //年份
-//	            String year = obj.getString("year");
-//	            System.out.println("year"+year);
-//	            //小图片
-//	            String smallImage = obj.getJSONObject("images").getString("small");
-//	            System.out.println("smallImage"+smallImage);
-//	            //中图片
-//	            String mediumImage = obj.getJSONObject("images").getString("medium");
-//	            System.out.println("mediumImage"+mediumImage);
-//	            //大图片
-//	            String largeImage = obj.getJSONObject("images").getString("large");
-//	            System.out.println("largeImage"+largeImage);
-//	            //豆瓣地址
-//	            String alt = obj.getString("alt");
-//	            System.out.println("alt="+alt);
-//	            //电影名称
-//	            String title = obj.getString("title");
-//	            System.out.println("title="+title);
-//	            //国家
-//	            JSONArray countries = obj.getJSONArray("countries");
-//	            for(int i = 0;i < countries.size();i++){
-//	            	String country = (String) countries.get(i);
-//	            	System.out.println("country="+country);
-//	            }
-//	            //类型（剧情、音乐）
-//	            JSONArray genres = obj.getJSONArray("genres");
-//	            for(int i = 0;i < genres.size();i++){
-//	            	String cast = (String) genres.get(i);
-//	            	System.out.println("cast="+cast);
-//	            }
-//	            //演员
-//	            JSONArray casts = obj.getJSONArray("casts");
-//	            for(int i = 0;i < casts.size();i++){
-//	            	JSONObject cast = casts.getJSONObject(i);
-//	            	String id = cast.getString("id");
-//	            	System.out.println("id="+id);
-//	            	String name = cast.getString("name");
-//	            	System.out.println("name="+name);
-//	            	String castAlt = cast.getString("alt");
-//	            	System.out.println("castAlt="+castAlt);
-//	            	JSONObject avatars = cast.getJSONObject("avatars");
-//	            	String avatarSmallImage = avatars.getString("small");
-//	            	String avatarMediumImage = avatars.getString("medium");
-//	            	String avatarLargeImage = avatars.getString("large");
-//	            }
-//	            //第几季
-//	            String current_season = obj.getString("current_season");
-//	            System.out.println("current_season="+current_season);
-//	            //原标题
-//	            String original_title = obj.getString("original_title");
-//	            System.out.println("original_title="+original_title);
-//	            //介绍
-//	            String summary = obj.getString("summary");
-//	            System.out.println("summary="+summary);
-//	            //类型
-//	            String subtype = obj.getString("subtype");
-//	            System.out.println("subtype="+subtype);
-//	            //导演
-//	            JSONArray directors = obj.getJSONArray("directors");
-//	            for(int i = 0;i < directors.size();i++){
-//	            	JSONObject director = directors.getJSONObject(i);
-//	            	String id = director.getString("id");
-//	            	System.out.println("id="+id);
-//	            	String name = director.getString("name");
-//	            	System.out.println("name="+name);
-//	            	String directorAlt = director.getString("alt");
-//	            	System.out.println("directorAlt="+directorAlt);
-//	            }
-//	            //别名
-//	            JSONArray aka = obj.getJSONArray("aka");
-//	            for(int i = 0;i < aka.size();i++){
-//	            	String alias = (String) aka.get(i);
-//	            	System.out.println("alias="+alias);
-//	            }
-	            
 	        }
 	    } catch (ClientProtocolException e) {  
 	        e.printStackTrace();  

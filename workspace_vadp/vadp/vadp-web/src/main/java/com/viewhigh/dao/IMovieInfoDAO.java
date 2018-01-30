@@ -29,5 +29,11 @@ public interface IMovieInfoDAO {
 	 * @param resultJson
 	 */
 	void addResponseJson(String id, String resultJson);
+	
+	/**
+	 * 根据ID删除
+	 * @param ids
+	 */
+	void deleteByIds(String ids);
 
 }
