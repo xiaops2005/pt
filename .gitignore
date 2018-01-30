@@ -1,0 +1,10 @@
+*.class
+*.log
+*.component
+.metadata
+.project
+.factorypath
+.classpath
+
+
+workspace_vadp/Servers/
