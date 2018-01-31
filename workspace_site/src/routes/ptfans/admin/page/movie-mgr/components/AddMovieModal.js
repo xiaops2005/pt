@@ -48,26 +48,30 @@ class AddMovieModal extends React.Component {
   }
 
   getDoubanInfo = (value) => {
-    let that = this;
-    processor.saveDoubanJson(value, (result) => {
-      debugger
-      if (result.getDataStores == {}) {
-        return;
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        let that = this;
+        processor.saveDoubanJson(value, (result) => {
+          if (Object.keys(result.getDataStores()).length == 0) {
+            return;
+          }
+          let obj = result.getSinglePrimaryList()[0];
+          console.log(obj)
+          // that.setState({year: obj.year})
+          let title = obj.title + ' ' + obj.original_title + ' (' + obj.year + ')'
+          that.setState({title: title })
+          // that.setState({original_title: obj.original_title})
+          that.setState({smallImage: obj.smallImage})
+          that.setState({directors: obj.directors})
+          that.setState({casts: obj.casts})
+          that.setState({genres: obj.genres})
+          that.setState({countries: obj.countries})
+          that.setState({aka: obj.aka})
+          that.setState({summary: obj.summary})
+        })
       }
-      let obj = result.getSinglePrimaryList()[0];
-      console.log(obj)
-      // that.setState({year: obj.year})
-      let title = obj.title + ' ' + obj.original_title + ' (' + obj.year + ')'
-      that.setState({title: title })
-      // that.setState({original_title: obj.original_title})
-      that.setState({smallImage: obj.smallImage})
-      that.setState({directors: obj.directors})
-      that.setState({casts: obj.casts})
-      that.setState({genres: obj.genres})
-      that.setState({countries: obj.countries})
-      that.setState({aka: obj.aka})
-      that.setState({summary: obj.summary})
-    })
+    });
+
   }
 
   handleOk = (e) => {
@@ -122,9 +126,8 @@ class AddMovieModal extends React.Component {
                 required: true, message: '请输入豆瓣编号!',
               }],
             })(
-              <Search placeholder="豆瓣编号" enterButton="查询豆瓣信息" value="123"
+              <Search placeholder="豆瓣编号" enterButton="查询豆瓣信息"
                       onSearch={this.getDoubanInfo} size="large"/>
-              // <Input defaultValue="1764796" value="1"/>
             )}
           </FormItem>
           <Layout className="layout">
