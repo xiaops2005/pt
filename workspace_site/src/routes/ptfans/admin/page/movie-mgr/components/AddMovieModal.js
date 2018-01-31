@@ -2,7 +2,7 @@ import React from 'react';
 import {Modal, Select, Table, message, Form, Layout, Input, Button} from 'antd';
 import NetUtil from "../../../../../../constants/httpUtil";
 import {MovieMgrService} from "../../../process/MovieMgrService";
-// import WebP from '../../../../components/webP/WebP.js'
+// import {MovieMgrService} from "../../../process/LoadService";
 
 const {Option} = Select.Option;
 const processor = new MovieMgrService()
@@ -49,7 +49,7 @@ class AddMovieModal extends React.Component {
 
   getDoubanInfo = (value) => {
     let that = this;
-    processor.getDoubanInfo(value, (result) => {
+    processor.saveDoubanJson(value, (result) => {
       debugger
       if (result.getDataStores == {}) {
         return;

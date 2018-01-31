@@ -1,8 +1,6 @@
 package com.viewhigh.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.viewhigh.entity.ReMateDetail;
-import com.viewhigh.excel.domain.entity.BdMaterials;
 
 import java.util.List;
 
@@ -12,5 +10,5 @@ public interface MovieMgrService {
 	 * @param doubanId
 	 * @return
 	 */
-	JSONObject getDoubanMovieInfo(String doubanId);
+	JSONObject saveDoubanJson(String doubanId);
 }
