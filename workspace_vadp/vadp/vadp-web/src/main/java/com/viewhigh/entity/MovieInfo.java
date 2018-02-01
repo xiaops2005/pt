@@ -16,8 +16,6 @@ import java.util.Date;
 public class MovieInfo {
 
 	@Id
-//	@GenericGenerator(name = "idGenerator", strategy = "uuid") // 这个是hibernate的注解/生成32位UUID
-//	@GeneratedValue(generator = "idGenerator")
 	@Column(name = "id")
 	private String id;
 	
@@ -236,6 +234,16 @@ public class MovieInfo {
 
 	public void setResponseJson(String responseJson) {
 		this.responseJson = responseJson;
+	}
+
+	@Override
+	public String toString() {
+		return "MovieInfo [id=" + id + ", title=" + title + ", rating=" + rating + ", year=" + year + ", smallImage="
+				+ smallImage + ", mediumImage=" + mediumImage + ", largeImage=" + largeImage + ", alt=" + alt
+				+ ", countries=" + countries + ", genres=" + genres + ", currentSeason=" + currentSeason
+				+ ", originalTitle=" + originalTitle + ", summary=" + summary + ", subtype=" + subtype + ", akas="
+				+ akas + ", createTime=" + createTime + ", updateTime=" + updateTime + ", casts=" + casts
+				+ ", directors=" + directors + ", responseJson=" + responseJson + "]";
 	}
 	
 	

@@ -1,8 +1,7 @@
 import React, {Component} from "react";
-import { Modal, Button } from "antd";
-// import MovieInfo from './components/MovieInfo';
-// import Header from './components/Header';
-import AddMovieModal from './components/AddMovieModal';
+import {Modal, Button} from "antd";
+import Body from './components/Body';
+import Header from './components/Header';
 import {MovieMgrService} from "../../process/MovieMgrService";
 
 const processor = new MovieMgrService()
@@ -14,20 +13,19 @@ class MovieMgr extends Component {
     this.state = {}
   }
 
-  addMovie =(e)=>{
-    e.preventDefault();
-    // this.refs.addMovieModal.setState({visible:true})
-    this.setState({visible: true})
-  };
-
   render() {
     console.log("movie-mgr render")
 
 
     return (
-      <div>
-        <Button className="btn-primary" onClick={this.addMovie}>添加影片信息</Button>
-        <AddMovieModal ref="addMovieModal" visible={this.state.visible}/>
+      <div className="vh">
+        <Header {...this.props}
+                onQuery={this.queryReMateDetail}
+                wrappedComponentRef={(inst) => this.formRef = inst}/>
+        <Body {...this.props}
+              dataSource={this.state.dataSource}
+              onExport={this.exportReMateDetail}
+              header={this.formRef}/>
       </div>
     )
   }

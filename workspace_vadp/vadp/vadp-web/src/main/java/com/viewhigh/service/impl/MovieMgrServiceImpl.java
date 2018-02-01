@@ -11,15 +11,19 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.viewhigh.Constants;
 import com.viewhigh.dao.IMovieInfoDAO;
+import com.viewhigh.dao.impl.MovieInfoDAOImpl;
 import com.viewhigh.entity.MovieInfo;
 import com.viewhigh.service.MovieMgrService;
+import com.viewhigh.util.Strings;
 import com.viewhigh.vadp.framework.base.service.BaseServiceImpl;
 
 @Service
@@ -28,7 +32,7 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 	public long lastInvokeTime = 0L;
 	
 	@Autowired
-	private IMovieInfoDAO movieInfoDao;
+	private MovieInfoDAOImpl movieInfoDao;
 	
 	@Override
 	public JSONObject saveDoubanJson(String doubanId) {
@@ -36,6 +40,7 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 		if(mi != null && StringUtils.isNotBlank(mi.getResponseJson())){
 			String response = mi.getResponseJson();
 			System.out.println("-------------获取本地豆瓣数据-------------");
+//			response = Strings.unicode2String(response);
 			return this.response2json(response);
 		}
 		
@@ -60,6 +65,22 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 		    return this.response2json(resultJson);
 	    }
 	    return null;
+	}
+	
+	@Override
+	public void saveDoubanValue(String doubanId) {
+		MovieInfo mi = movieInfoDao.getMovieInfo(doubanId);
+		if(mi != null && StringUtils.isNotBlank(mi.getResponseJson())){
+			System.out.println(mi.toString());
+			String responseJson = mi.getResponseJson();
+			System.out.println(responseJson);
+			JSONObject object = this.response2json(responseJson);
+			System.out.println(object.toString());
+			MovieInfo tmpMi = JSON.parseObject(object.toString(),MovieInfo.class);
+			BeanUtils.copyProperties(tmpMi, mi, "id","responseJson","createTime","updateTime");
+			System.out.println(mi.toString());
+			movieInfoDao.updateObject(mi);
+		}
 	}
 	
 	private HttpResponse getDoubanJson(String doubanId){
@@ -90,24 +111,31 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 	 */
 	private JSONObject response2json(String response){
 		JSONObject obj = JSONObject.parseObject(response);
+		JSONObject retObj = new JSONObject();
+		//id
+		String id = obj.getString("id");
+		retObj.put("id", id);
 		//评分
 		String rating = obj.getJSONObject("rating").getString("average");
-		obj.put("rating", rating);
+		retObj.put("rating", rating);
 		// 年份
 		String year = obj.getString("year");
+		retObj.put("year", year);
 		// 小图片
 		String smallImage = obj.getJSONObject("images").getString("small");
-		obj.put("smallImage", smallImage);
+		retObj.put("smallImage", smallImage);
 		// 中图片
 		String mediumImage = obj.getJSONObject("images").getString("medium");
-		obj.put("mediumImage", mediumImage);
+		retObj.put("mediumImage", mediumImage);
 		// 大图片
 		String largeImage = obj.getJSONObject("images").getString("large");
-		obj.put("largeImage", largeImage);
+		retObj.put("largeImage", largeImage);
 		// 豆瓣地址
 		String alt = obj.getString("alt");
+		retObj.put("alt", alt);
 		// 电影名称
 		String title = obj.getString("title");
+		retObj.put("title", title);
 		// 国家
 		StringBuffer countriesSb = new StringBuffer();
 		JSONArray countries = obj.getJSONArray("countries");
@@ -115,7 +143,7 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 			String country = (String) countries.get(i);
 			countriesSb.append(country + "/");
 		}
-		obj.put("countries", StringUtils.removeEnd(countriesSb.toString(), "/"));
+		retObj.put("countries", StringUtils.removeEnd(countriesSb.toString(), "/"));
 		// 类型（剧情、音乐）
 		StringBuffer genresSb = new StringBuffer();
 		JSONArray genres = obj.getJSONArray("genres");
@@ -123,13 +151,13 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 			String genre = (String) genres.get(i);
 			genresSb.append(genre + "/");
 		}
-		obj.put("genres",StringUtils.removeEnd(genresSb.toString(), "/"));
+		retObj.put("genres",StringUtils.removeEnd(genresSb.toString(), "/"));
 		// 演员
 		StringBuffer castsSb = new StringBuffer();
 		JSONArray casts = obj.getJSONArray("casts");
 		for (int i = 0; i < casts.size(); i++) {
 			JSONObject cast = casts.getJSONObject(i);
-			String id = cast.getString("id");
+			String castId = cast.getString("id");
 			String name = cast.getString("name");
 			castsSb.append(name + "/");
 			String castAlt = cast.getString("alt");
@@ -138,26 +166,30 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 			String avatarMediumImage = avatars.getString("medium");
 			String avatarLargeImage = avatars.getString("large");
 		}
-		obj.put("casts",StringUtils.removeEnd(castsSb.toString(), "/"));
+		retObj.put("casts",StringUtils.removeEnd(castsSb.toString(), "/"));
 		// 第几季
-		String current_season = obj.getString("current_season");
+		String currentSeason = obj.getString("current_season");
+		retObj.put("currentSeason", currentSeason);
 		// 原标题
-		String original_title = obj.getString("original_title");
+		String originalTitle = obj.getString("original_title");
+		retObj.put("originalTitle", originalTitle);
 		// 介绍
 		String summary = obj.getString("summary");
+		retObj.put("summary", summary);
 		// 类型
 		String subtype = obj.getString("subtype");
+		retObj.put("subtype", subtype);
 		// 导演
 		StringBuffer directorsSb = new StringBuffer();
 		JSONArray directors = obj.getJSONArray("directors");
 		for (int i = 0; i < directors.size(); i++) {
 			JSONObject director = directors.getJSONObject(i);
-			String id = director.getString("id");
+			String directorId = director.getString("id");
 			String name = director.getString("name");
 			directorsSb.append(name + "/");
 			String directorAlt = director.getString("alt");
 		}
-		obj.put("directors",StringUtils.removeEnd(directorsSb.toString(), "/"));
+		retObj.put("directors",StringUtils.removeEnd(directorsSb.toString(), "/"));
 		// 别名
 		StringBuffer akaSb = new StringBuffer();
 		JSONArray aka = obj.getJSONArray("aka");
@@ -165,8 +197,8 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 			String alias = (String) aka.get(i);
 			akaSb.append(alias + "/");
 		}
-		obj.put("aka",StringUtils.removeEnd(akaSb.toString(), "/"));
-		return obj;
+		retObj.put("akas",StringUtils.removeEnd(akaSb.toString(), "/"));
+		return retObj;
 	}
 		
 

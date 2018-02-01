@@ -22,7 +22,7 @@ class AddMovieModal extends React.Component {
       visible: false,
       year: '',
       title: '',
-      original_title: '',
+      originalTitle: '',
       smallImage: '',
       directors: '',
       casts: '',
@@ -58,27 +58,26 @@ class AddMovieModal extends React.Component {
           let obj = result.getSinglePrimaryList()[0];
           console.log(obj)
           // that.setState({year: obj.year})
-          let title = obj.title + ' ' + obj.original_title + ' (' + obj.year + ')'
+          let title = obj.title + ' ' + obj.originalTitle + ' (' + obj.year + ')'
           that.setState({title: title })
-          // that.setState({original_title: obj.original_title})
+          that.setState({id: obj.id})
           that.setState({smallImage: obj.smallImage})
           that.setState({directors: obj.directors})
           that.setState({casts: obj.casts})
           that.setState({genres: obj.genres})
           that.setState({countries: obj.countries})
-          that.setState({aka: obj.aka})
+          that.setState({akas: obj.akas})
           that.setState({summary: obj.summary})
         })
       }
     });
-
   }
 
   handleOk = (e) => {
     console.log(e);
-    this.setState({
-      visible: false,
-    });
+    processor.saveDoubanValue(this.state.id, (result) => {
+
+    })
   }
 
   render() {
