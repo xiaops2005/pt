@@ -9,10 +9,7 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      yearList: [],
-      mappedYear: {},
-      hospitalList: [],
-      mappedHospital: {},
+
     }
   }
 
@@ -28,13 +25,8 @@ class Header extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        let year = this.props.form.getFieldValue('year');
-        let pkHospital = this.props.form.getFieldValue('pkHospital');
-        let materialsDeptCode = this.props.form.getFieldValue('materialsDeptCode');
-        let materialsDeptName = this.props.form.getFieldValue('materialsDeptName');
-        let isCharges = this.props.form.getFieldValue('isCharges');
-        let pkMaterials = this.props.form.getFieldValue('pkMaterials');
-        this.props.onQuery(year,pkHospital,materialsDeptCode,materialsDeptName,isCharges,pkMaterials);
+        let params = this.props.form.getFieldsValue();
+        this.props.onQuery(params);
       }
     });
   };
@@ -57,32 +49,71 @@ class Header extends React.Component {
         <Form onSubmit={this.handleSearch} className="ant-advanced-search-form">
           <Row gutter={24}>
             <Col span={7}>
-              <FormItem label="年度" {...formItemLayout}>
+              <FormItem label="电影名称" {...formItemLayout}>
                 {
-                  getFieldDecorator('year', {
-                    rules: [{ required: true, message: '年度不能为空' }],
+                  getFieldDecorator('title', {
+                    rules: [],
                     initialValue: null
                   })(
-                    <Select>
-                      {this.state.yearList.map((item) => {
-                        return <Option key={item.key} value={item.codeId}>{item.codeName}</Option>
-                      })}
-                    </Select>
+                    <Input/>
                   )
                 }
               </FormItem>
             </Col>
             <Col span={7}>
-              <FormItem label="所属单位" {...formItemLayout}>
+              <FormItem label="导演" {...formItemLayout}>
                 {
-                  getFieldDecorator('pkHospital', {
+                  getFieldDecorator('directors', {
                     rules: []
                   })(
-                    <Select  allowClear>
-                      {this.state.hospitalList.map((item) => {
-                        return <Option key={item.key} value={item.pkHospital}>{item.hospitalName}</Option>
-                      })}
-                    </Select>
+                    <Input/>
+                  )
+                }
+              </FormItem>
+            </Col>
+            <Col span={7}>
+              <FormItem label="演员" {...formItemLayout}>
+                {
+                  getFieldDecorator('casts', {
+                    rules: []
+                  })(
+                    <Input/>
+                  )
+                }
+              </FormItem>
+            </Col>
+          </Row>
+          <Row gutter={24}>
+            <Col span={7}>
+              <FormItem label="年份" {...formItemLayout}>
+                {
+                  getFieldDecorator('year', {
+                    rules: [],
+                    initialValue: null
+                  })(
+                    <Input/>
+                  )
+                }
+              </FormItem>
+            </Col>
+            <Col span={7}>
+              <FormItem label="国家" {...formItemLayout}>
+                {
+                  getFieldDecorator('countries', {
+                    rules: []
+                  })(
+                    <Input/>
+                  )
+                }
+              </FormItem>
+            </Col>
+            <Col span={7}>
+              <FormItem label="类型" {...formItemLayout}>
+                {
+                  getFieldDecorator('genres', {
+                    rules: []
+                  })(
+                    <Input/>
                   )
                 }
               </FormItem>

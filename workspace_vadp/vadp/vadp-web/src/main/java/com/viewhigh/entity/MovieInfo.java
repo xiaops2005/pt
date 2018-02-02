@@ -75,6 +75,9 @@ public class MovieInfo {
 	
 	@Column(name = "response_json")
 	private String responseJson;
+	
+	@Column(name = "ratings_count")
+	private String ratingsCount;
 
 	public String getId() {
 		return id;
@@ -236,15 +239,14 @@ public class MovieInfo {
 		this.responseJson = responseJson;
 	}
 
-	@Override
-	public String toString() {
-		return "MovieInfo [id=" + id + ", title=" + title + ", rating=" + rating + ", year=" + year + ", smallImage="
-				+ smallImage + ", mediumImage=" + mediumImage + ", largeImage=" + largeImage + ", alt=" + alt
-				+ ", countries=" + countries + ", genres=" + genres + ", currentSeason=" + currentSeason
-				+ ", originalTitle=" + originalTitle + ", summary=" + summary + ", subtype=" + subtype + ", akas="
-				+ akas + ", createTime=" + createTime + ", updateTime=" + updateTime + ", casts=" + casts
-				+ ", directors=" + directors + ", responseJson=" + responseJson + "]";
+	public String getRatingsCount() {
+		return ratingsCount;
 	}
+
+	public void setRatingsCount(String ratingsCount) {
+		this.ratingsCount = ratingsCount;
+	}
+
 	
 	
 

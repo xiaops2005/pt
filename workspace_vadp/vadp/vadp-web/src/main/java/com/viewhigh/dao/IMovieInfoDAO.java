@@ -35,5 +35,9 @@ public interface IMovieInfoDAO {
 	 * @param ids
 	 */
 	void deleteByIds(String ids);
+	
+	void updateObject(MovieInfo mi);
+
+	QueryResult query(MovieInfo mi);
 
 }

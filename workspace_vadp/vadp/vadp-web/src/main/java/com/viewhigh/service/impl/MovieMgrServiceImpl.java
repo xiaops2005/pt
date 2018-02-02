@@ -2,6 +2,7 @@ package com.viewhigh.service.impl;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
@@ -22,9 +23,11 @@ import com.viewhigh.Constants;
 import com.viewhigh.dao.IMovieInfoDAO;
 import com.viewhigh.dao.impl.MovieInfoDAOImpl;
 import com.viewhigh.entity.MovieInfo;
+import com.viewhigh.entity.TorrentInfo;
 import com.viewhigh.service.MovieMgrService;
 import com.viewhigh.util.Strings;
 import com.viewhigh.vadp.framework.base.service.BaseServiceImpl;
+import com.viewhigh.vadp.framework.data.persistence.pagination.QueryResult;
 
 @Service
 public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrService {
@@ -32,7 +35,7 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 	public long lastInvokeTime = 0L;
 	
 	@Autowired
-	private MovieInfoDAOImpl movieInfoDao;
+	private IMovieInfoDAO movieInfoDao;
 	
 	@Override
 	public JSONObject saveDoubanJson(String doubanId) {
@@ -200,6 +203,12 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 		retObj.put("akas",StringUtils.removeEnd(akaSb.toString(), "/"));
 		return retObj;
 	}
+
+	@Override
+	public QueryResult query(MovieInfo mi) {
+		return movieInfoDao.query(mi);
+	}
+
 		
 
 //	{

@@ -12,15 +12,18 @@ class MovieMgr extends Component {
     super(props);
     this.state = {}
   }
+  query = (params) => {
+    processor.query(params, (data) => {
+      this.setState({dataSource:data.getSinglePrimary().map((item, index) => Object.assign(item, {key: index}))})
+    });
+  }
 
   render() {
     console.log("movie-mgr render")
-
-
     return (
       <div className="vh">
         <Header {...this.props}
-                onQuery={this.queryReMateDetail}
+                onQuery={this.query}
                 wrappedComponentRef={(inst) => this.formRef = inst}/>
         <Body {...this.props}
               dataSource={this.state.dataSource}
