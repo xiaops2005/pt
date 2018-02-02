@@ -27,4 +27,10 @@ public interface MovieMgrService {
 	 * @return
 	 */
 	QueryResult query(MovieInfo mi);
+	/**
+	 * 查询byId
+	 * @param mi
+	 * @return
+	 */
+	MovieInfo queryById(String id);
 }

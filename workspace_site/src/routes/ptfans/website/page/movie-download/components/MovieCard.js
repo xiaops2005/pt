@@ -25,22 +25,25 @@ class MovieCard extends React.Component {
       textAlign: 'left',
     };
     return (
-      <Card noHovering>
+      <Card style={{ width: 1024,margin: '0 auto'}} hoverable>
         {movieList.map((movie) => {
-          console.log(movie.img)
-          console.log(movie.id)
-          console.log(movie.name)
-          const n = movie.name.substr(0,10);
-          const href = '/ptfans/movie-detail/' + movie.id
+          const {smallImage, id, year, title} = movie
+          const name = year + ' ' + title
+          const href = '/ptfans/movie-detail/' + id
+          console.log(smallImage,id,year,title)
           return(
           <Card.Grid style={gridStyle}>
-            <Tooltip placement="leftTop" title={movie.name}>
+            <Tooltip placement="leftTop" title={name}>
               <NavLink to={href} target="_blank">
                 <div className="custom-image">
-                    <img width="100%" height="320px" src={movie.img} alt={movie.alt}/>
+                  <picture className="picture">
+                    <source width="100%" height="260" type="image/webp" srcSet={smallImage}/>
+                    <img width="100%" height="260"  src={smallImage}/>
+                  </picture>
+                    {/*<img width="100%" height="320px" src={movie.smallImage} alt={movie.alt}/>*/}
                 </div>
                 <div className="custom-card">
-                  <Ellipsis lines={2}>{n}</Ellipsis>
+                  <Ellipsis lines={2}>{name}</Ellipsis>
                 </div>
               </NavLink>
             </Tooltip>

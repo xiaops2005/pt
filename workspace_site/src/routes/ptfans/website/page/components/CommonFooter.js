@@ -12,7 +12,7 @@ class CommonFooter extends React.Component {
 
   render() {
     return (
-      <Footer style={{ textAlign: 'center' }}>
+      <Footer style={{ width: 1024,'text-align': 'center'}}>
         Ant Design ©2016 Created by Ant UED
       </Footer>
     )

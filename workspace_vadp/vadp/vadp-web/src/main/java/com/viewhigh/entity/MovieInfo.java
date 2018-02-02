@@ -77,7 +77,16 @@ public class MovieInfo {
 	private String responseJson;
 	
 	@Column(name = "ratings_count")
-	private String ratingsCount;
+	private Integer ratingsCount;
+	
+	@Column(name = "torrent_flag")
+	private Boolean torrentFlag = false;
+	
+	@Column(name = "subtitle_flag")
+	private Boolean subtitleFlag = false;
+	
+	@Column(name = "publish_flag")
+	private Boolean publishFlag = false;
 
 	public String getId() {
 		return id;
@@ -239,12 +248,36 @@ public class MovieInfo {
 		this.responseJson = responseJson;
 	}
 
-	public String getRatingsCount() {
+	public Integer getRatingsCount() {
 		return ratingsCount;
 	}
 
-	public void setRatingsCount(String ratingsCount) {
+	public void setRatingsCount(Integer ratingsCount) {
 		this.ratingsCount = ratingsCount;
+	}
+
+	public Boolean getTorrentFlag() {
+		return torrentFlag;
+	}
+
+	public void setTorrentFlag(Boolean torrentFlag) {
+		this.torrentFlag = torrentFlag;
+	}
+
+	public Boolean getSubtitleFlag() {
+		return subtitleFlag;
+	}
+
+	public void setSubtitleFlag(Boolean subtitleFlag) {
+		this.subtitleFlag = subtitleFlag;
+	}
+
+	public Boolean getPublishFlag() {
+		return publishFlag;
+	}
+
+	public void setPublishFlag(Boolean publishFlag) {
+		this.publishFlag = publishFlag;
 	}
 
 	

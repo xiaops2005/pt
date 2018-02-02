@@ -36,8 +36,12 @@ public interface IMovieInfoDAO {
 	 */
 	void deleteByIds(String ids);
 	
-	void updateObject(MovieInfo mi);
-
 	QueryResult query(MovieInfo mi);
+
+	void saveDoubanValue(MovieInfo mi);
+
+	MovieInfo queryById(String id);
+
+	void setTorrentFlag(String movieId, boolean b);
 
 }

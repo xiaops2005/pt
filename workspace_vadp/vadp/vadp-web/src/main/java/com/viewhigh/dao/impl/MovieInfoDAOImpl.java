@@ -63,38 +63,52 @@ public class MovieInfoDAOImpl extends BaseHibernateDAO implements IMovieInfoDAO 
 	}
 
 	public QueryResult query(MovieInfo mi) {
-		String sql = " from MovieInfo where 1=1 ";
+		StringBuffer sql = new StringBuffer(" from MovieInfo where 1=1 ");
 		List<Object> params = new ArrayList<Object>();
 		if (!StringUtils.isBlank(mi.getTitle())) {
-			sql += " and title like ?";
+			sql.append(" and title like ?");
 			params.add("%"+mi.getTitle()+"%");
 		}
 		if (!StringUtils.isBlank(mi.getDirectors())) {
-			sql += "  and directors like ?";
+			sql.append(" and directors like ?");
 			params.add("%"+mi.getDirectors()+"%");
 		}
 		if (!StringUtils.isBlank(mi.getCasts())) {
-			sql += "  and casts like ?";
+			sql.append(" and casts like ?");
 			params.add("%"+mi.getCasts()+"%");
 		}
 		if (!StringUtils.isBlank(mi.getYear())) {
-			sql += "  and year like ?";
+			sql.append(" and year like ?");
 			params.add("%"+mi.getYear()+"%");
 		}
 		if (!StringUtils.isBlank(mi.getCountries())) {
-			sql += "  and countries like ?";
+			sql.append(" and countries like ?");
 			params.add("%"+mi.getCountries()+"%");
 		}
 		if (!StringUtils.isBlank(mi.getGenres())) {
-			sql += "  and genres like ?";
+			sql.append("  and genres like ?");
 			params.add("%"+mi.getGenres()+"%");
 		}
-		return this.queryObjectsByPage(sql, params.toArray());
+		sql.append(" order by createTime desc");
+		return this.queryObjectsByPage(sql.toString(), params.toArray());
 	}
 
 	@Override
-	public void updateObject(MovieInfo mi) {
+	public void saveDoubanValue(MovieInfo mi) {
 		this.updateObject(mi);
+	}
+
+	@Override
+	public MovieInfo queryById(String id) {
+		MovieInfo mi = this.getHibernateTemplate().get(MovieInfo.class, id);
+		return mi;
+	}
+
+	@Override
+	public void setTorrentFlag(String movieId, boolean b) {
+		String torrentFlag = b==true?"1":"0";
+		String sql = "update movie_info set torrent_flag=" + torrentFlag  + " where id=" + movieId;
+		this.update(sql);
 	}
 
 }

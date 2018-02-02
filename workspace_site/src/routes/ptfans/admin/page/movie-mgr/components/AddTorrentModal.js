@@ -138,7 +138,7 @@ class AddTorrentModal extends React.Component {
           <Content>
             <Table  bordered className="main-section" scroll={{ x: '100%',y: true}} pagination={{pageSize: 10}}  dataSource={this.state.dataSource} columns={this.columns}/>
           </Content>
-        <Sider width="360" style={{ background: '#fff' }}>
+        <Sider width="360" style={{ background: '#ffffff' }}>
           <Form>
             <FormItem
               {...formItemLayout}

@@ -20,16 +20,17 @@ class AddMovieModal extends React.Component {
     super(props);
     this.state = {
       visible: false,
-      year: '',
-      title: '',
-      originalTitle: '',
-      smallImage: '',
-      directors: '',
-      casts: '',
-      genres: '',
-      countries: '',
-      akas: '',
-      summary: '',
+      movieInfo: {}
+      // year: '',
+      // title: '',
+      // originalTitle: '',
+      // smallImage: '',
+      // directors: '',
+      // casts: '',
+      // genres: '',
+      // countries: '',
+      // akas: '',
+      // summary: '',
     };
   }
 
@@ -43,11 +44,8 @@ class AddMovieModal extends React.Component {
     this.setState({...nextProps});
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-  }
-
   getDoubanInfo = (value) => {
+    console.log(value)
     this.props.form.validateFields((err, values) => {
       if (!err) {
         let that = this;
@@ -57,17 +55,8 @@ class AddMovieModal extends React.Component {
           }
           let obj = result.getSinglePrimaryList()[0];
           console.log(obj)
-          // that.setState({year: obj.year})
-          let title = obj.title + ' ' + obj.originalTitle + ' (' + obj.year + ')'
-          that.setState({title: title })
-          that.setState({id: obj.id})
-          that.setState({smallImage: obj.smallImage})
-          that.setState({directors: obj.directors})
-          that.setState({casts: obj.casts})
-          that.setState({genres: obj.genres})
-          that.setState({countries: obj.countries})
-          that.setState({akas: obj.akas})
-          that.setState({summary: obj.summary})
+          obj.titleEx = obj.title + ' ' + obj.originalTitle + ' (' + obj.year + ')'
+          that.setState({movieInfo: obj})
         })
       }
     });
@@ -75,13 +64,16 @@ class AddMovieModal extends React.Component {
 
   handleOk = (e) => {
     console.log(e);
-    processor.saveDoubanValue(this.state.id, (result) => {
-
+    processor.saveDoubanValue(this.state.movieInfo.id, (result) => {
+      if(result.header.code == 1){
+        message.success("保存成功")
+      }
     })
   }
 
   render() {
-    const {visible, year, title, original_title, smallImage, directors, casts, genres, countries, akas, summary} = this.state;
+    const {titleEx, smallImage, directors, casts, genres, countries, akas, summary} = this.state.movieInfo
+    const {visible} = this.state
     console.log("AddMovieModal  render visible=", visible)
     const {getFieldDecorator} = this.props.form;
     const tailFormItemLayout = {
@@ -115,7 +107,7 @@ class AddMovieModal extends React.Component {
              onOk={this.handleOk}
              onCancel={() => this.setState({visible: false})}
              closable={true}>
-        <Form onSubmit={this.handleSubmit}>
+        <Form>
           <FormItem
             {...formItemLayout}
             label="豆瓣编号"
@@ -130,7 +122,7 @@ class AddMovieModal extends React.Component {
             )}
           </FormItem>
           <Layout className="layout">
-            <Header style={{background: '#fff'}}>{title}</Header>
+            <Header style={{background: '#fff'}}><h2>{titleEx}</h2></Header>
             <Layout>
               <Sider style={{background: '#fff'}} width="300">
                 <picture class="picture">

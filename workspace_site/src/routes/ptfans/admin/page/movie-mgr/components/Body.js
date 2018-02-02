@@ -25,13 +25,22 @@ class Body extends React.Component {
     };
     this.columns = [
       {
+        title: '豆瓣ID',
+        dataIndex: 'id',
+        width: '8%',
+        render: (text, record) => (
+          <div style={{ color: record.publishFlag ? '#00ff00' : '#ff0000' }}>
+            {text}
+          </div>
+        )
+      },{
         title: '电影名称',
         dataIndex: 'title',
-        width: '15%',
+        width: '10%',
       },{
         title: '导演',
         dataIndex: 'directors',
-        width: '13%',
+        width: '10%',
       },{title: '演员',
         dataIndex: 'casts',
         width: '20%',
@@ -44,22 +53,6 @@ class Body extends React.Component {
         dataIndex: 'year',
         width: '8%',
       },{
-      //   title: '小图片URL',
-      //   dataIndex: 'small_image',
-      //   width: '10%',
-      // }, {
-      //   title: '中图片URL',
-      //   dataIndex: 'medium_image',
-      //   width: '10%',
-      // },{
-      //   title: '大图片URL',
-      //   dataIndex: 'large_image',
-      //   width: '10%',
-      // },{
-      //   title: '豆瓣URL',
-      //   dataIndex: 'alt',
-      //   width: '10%',
-      // },{
         title: '国家',
         dataIndex: 'countries',
         width: '8%',
@@ -68,38 +61,17 @@ class Body extends React.Component {
         dataIndex: 'genres',
         width: '8%',
       },{
-        title: '季',
-        dataIndex: 'currentSeason',
-        width: '5%',
-      }, {
         title: '操作',
         key: 'action',
-        width: '15%',
+        width: '10%',
         render: (text, record) => (
           <span>
-            <a onClick={() => this.addTorrent(record.id)}>种子</a>
+            <a style={{ color: record.torrentFlag ? '#00ff00' : '#ff0000' }} onClick={() => this.addTorrent(record.id)}>种子</a>
             <Divider type="vertical"/>
-            <a onClick={() => this.addSubTitle(record.id)}>字幕</a>
+            <a style={{ color: record.subtitleFlag ? '#00ff00' : '#ff0000' }} onClick={() => this.addSubTitle(record.id)}>字幕</a>
          </span>
-        ),
-      }
-      //   title: '原始标题',
-      //   dataIndex: 'original_title',
-      //   width: '10%',
-      // },{
-      //   title: '介绍',
-      //   dataIndex: 'summary',
-      //   width: '10%',
-      // },{
-      //   title: '类型',
-      //   dataIndex: 'subtype',
-      //   width: '10%',
-      // },{
-      //   title: '别名',
-      //   dataIndex: 'akas',
-      //   width: '10%',
-      // }
-        ];
+        )
+      }];
   }
 
   componentWillMount() {
@@ -141,7 +113,7 @@ class Body extends React.Component {
         <div className="table-operations">
           <Button className="btn-primary" onClick={this.addMovie}>添加影片信息</Button>
         </div>
-        <Table  bordered className="main-section" scroll={{ x: '100%',y: true}} pagination={{pageSize: 10}} rowSelection={rowSelection} dataSource={this.state.dataSource} columns={this.columns}/>
+        <Table  bordered className="main-section" scroll={{ x: '100%',y: false}} pagination={{pageSize: 10}} rowSelection={rowSelection} dataSource={this.state.dataSource} columns={this.columns}/>
         <AddMovieModal wrappedComponentRef={(inst) => this.formRef = inst}/>
         <AddTorrentModal wrappedComponentRef={(inst) => this.formTorrent = inst}/>
       </div>

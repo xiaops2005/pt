@@ -34,13 +34,15 @@ import com.viewhigh.vadp.framework.data.persistence.pagination.QueryResult;
 @Service
 public class TorrentServiceImpl extends BaseServiceImpl implements TorrentService {
 
-	
+	@Autowired
+	private IMovieInfoDAO movieInfoDao;
 	@Autowired
 	private ITorrentInfoDAO torrentInfoDao;
 
 	@Override
 	public void saveOrUpdateTorrent(TorrentInfo ti) {
 		torrentInfoDao.saveOrUpdateTorrent(ti);
+		movieInfoDao.setTorrentFlag(ti.getMovieId(),true);
 	}
 
 	@Override

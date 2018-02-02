@@ -20,33 +20,28 @@ class CommonHeader extends React.Component {
 
   render() {
     return (
-      <Header>
+      <Header style={{ width: 1024, margin: '0 auto'}}>
       <Menu
-        // theme='light'
+        theme='light'
         onClick={this.handleClick}
         mode="horizontal"
         selectedKeys={[this.state.current]}
-        style={{ lineHeight: '64px' }}
+        style={{ lineHeight: '64px', background: '#ffffff'}}
       >
-        <Menu.Item key="1">
-          <NavLink to="/movie-download" target="_self">电影下载</NavLink>
-          {/*<a href="#/ptfans/movie-download" target="_self" rel="noopener noreferrer">电影下载</a>*/}
+        <Menu.Item key="movie-download">
+          <NavLink to="ptfans/movie-download" target="_self">电影下载</NavLink>
         </Menu.Item>
-        <Menu.Item key="2">
-          <NavLink to="/movie-recommend" target="_self">电影推荐</NavLink>
-          {/*<a href="#/ptfans/movie-recommend" target="_self" rel="noopener noreferrer">电影推荐</a>*/}
-        </Menu.Item>
-        <Menu.Item key="3">
-          <NavLink to="pt-paradise" target="_self">PT乐园</NavLink>
-          {/*<a href="#/ptfans/pt-paradise" target="_self" rel="noopener noreferrer">PT乐园</a>*/}
-        </Menu.Item>
-        <Menu.Item key="4">
-          <NavLink to="home-theater" target="_self">家庭影院</NavLink>
-          {/*<a href="#/ptfans/home-theater" target="_self" rel="noopener noreferrer">家庭影院</a>*/}
-        </Menu.Item>
-        <Menu.Item key="5">
-          <NavLink to="feedback" target="_self">意见反馈</NavLink>
-          {/*<a href="#/ptfans/feedback" target="_self" rel="noopener noreferrer">意见反馈</a>*/}
+        {/*<Menu.Item key="2">*/}
+          {/*<NavLink to="/movie-recommend" target="_self">电影推荐</NavLink>*/}
+        {/*</Menu.Item>*/}
+        {/*<Menu.Item key="3">*/}
+          {/*<NavLink to="pt-paradise" target="_self">PT乐园</NavLink>*/}
+        {/*</Menu.Item>*/}
+        {/*<Menu.Item key="4">*/}
+          {/*<NavLink to="home-theater" target="_self">家庭影院</NavLink>*/}
+        {/*</Menu.Item>*/}
+        <Menu.Item key="feedback">
+          <NavLink to="ptfans/feedback" target="_self">意见反馈</NavLink>
         </Menu.Item>
       </Menu>
       </Header>

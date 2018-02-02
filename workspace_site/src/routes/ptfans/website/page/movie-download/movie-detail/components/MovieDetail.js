@@ -7,10 +7,10 @@ import { Card, Layout, Menu, Breadcrumb, Icon } from 'antd';
 class MovieDetail extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      title : '2017年 这个男人来自地球：全新纪 [这个男人来自地球的续集]',
-      content : '<html>123</html>'
-    }
+  }
+
+  componentWillReceiveProps(nextProps){
+    this.setState({...nextProps})
   }
 
   createMarkup = () => {
@@ -18,16 +18,17 @@ class MovieDetail extends React.Component {
   }
 
   render() {
+    debugger;
     const {title, content} = this.state;
+    debugger;
     const gridStyle = {
       width: '25%',
       textAlign: 'center',
     };
     return (
       <div>
-      <h2>{title}</h2>
-      <p><div dangerouslySetInnerHTML={this.createMarkup()} /></p>
-
+        <h4>{title}</h4>
+        <p><div dangerouslySetInnerHTML={this.createMarkup()} /></p>
       </div>
     )
   }

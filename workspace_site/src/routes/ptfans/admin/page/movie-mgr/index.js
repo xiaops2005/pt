@@ -3,7 +3,7 @@ import {Modal, Button} from "antd";
 import Body from './components/Body';
 import Header from './components/Header';
 import {MovieMgrService} from "../../process/MovieMgrService";
-
+import './index.css'
 const processor = new MovieMgrService()
 // const FormItem = Form.Item;
 
@@ -21,7 +21,7 @@ class MovieMgr extends Component {
   render() {
     console.log("movie-mgr render")
     return (
-      <div className="vh">
+      <div>
         <Header {...this.props}
                 onQuery={this.query}
                 wrappedComponentRef={(inst) => this.formRef = inst}/>

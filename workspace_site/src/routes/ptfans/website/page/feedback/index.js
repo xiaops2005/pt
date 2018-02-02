@@ -22,8 +22,8 @@ class HomeTheater extends React.Component {
   render() {
     return (
     <Layout className="layout">
-      <CommonHeader current="5"/>
-      <Content style={{ padding: '1px' }}>
+      <CommonHeader current="feedback"/>
+      <Content style={{ width: 1024, padding: '1px', margin: '0 auto'}}>
         意见反馈
       </Content>
       <CommonFooter/>

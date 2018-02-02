@@ -74,15 +74,14 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 	public void saveDoubanValue(String doubanId) {
 		MovieInfo mi = movieInfoDao.getMovieInfo(doubanId);
 		if(mi != null && StringUtils.isNotBlank(mi.getResponseJson())){
-			System.out.println(mi.toString());
 			String responseJson = mi.getResponseJson();
-			System.out.println(responseJson);
 			JSONObject object = this.response2json(responseJson);
-			System.out.println(object.toString());
 			MovieInfo tmpMi = JSON.parseObject(object.toString(),MovieInfo.class);
 			BeanUtils.copyProperties(tmpMi, mi, "id","responseJson","createTime","updateTime");
-			System.out.println(mi.toString());
-			movieInfoDao.updateObject(mi);
+			if(mi.getCreateTime() == null){
+				mi.setCreateTime(new Date());
+			}
+			movieInfoDao.saveDoubanValue(mi);
 		}
 	}
 	
@@ -121,6 +120,9 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 		//评分
 		String rating = obj.getJSONObject("rating").getString("average");
 		retObj.put("rating", rating);
+		//评分
+		Integer ratingsCount = obj.getInteger("ratings_count");
+		retObj.put("ratingsCount", ratingsCount);
 		// 年份
 		String year = obj.getString("year");
 		retObj.put("year", year);
@@ -207,6 +209,12 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 	@Override
 	public QueryResult query(MovieInfo mi) {
 		return movieInfoDao.query(mi);
+	}
+
+	@Override
+	public MovieInfo queryById(String id) {
+		MovieInfo mi = movieInfoDao.queryById(id);
+		return mi;
 	}
 
 		
