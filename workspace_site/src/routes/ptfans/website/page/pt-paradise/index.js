@@ -24,7 +24,7 @@ class PtParadise extends React.Component {
     <Layout style={{ width: 1024, margin: '0 auto'}}>
       <CommonHeader current="pt-paradise"/>
       <Content style={{ padding: '1px' }}>
-        pt乐园
+        正在建设中。。。
       </Content>
       <CommonFooter/>
     </Layout>

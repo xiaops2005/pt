@@ -48,4 +48,6 @@ public interface IMovieInfoDAO {
 
 	void publish(String ids, String publishFlag);
 
+	QueryResult searchMovie(String keyword);
+
 }

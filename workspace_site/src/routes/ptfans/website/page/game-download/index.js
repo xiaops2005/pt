@@ -10,7 +10,7 @@ import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 // import './index.css'
 const { Header, Content, Footer } = Layout;
 
-class HomeTheater extends React.Component {
+class GameDownload extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -22,15 +22,15 @@ class HomeTheater extends React.Component {
   render() {
     return (
     <Layout style={{ width: 1024, margin: '0 auto'}}>
-      <CommonHeader current="home-theater"/>
+      <CommonHeader current="game-download"/>
       <Content style={{ padding: '1' }}>
-        家庭影院
+        正在建设中。。。
       </Content>
       <CommonFooter/>
     </Layout>
     )
   }
 }
-export default HomeTheater
+export default GameDownload
 
 

@@ -58,4 +58,19 @@ export class  MovieMgrService{
     NetUtil.post('/api/commonProcessor/commonMethod', dc, successFn);
   }
 
+  searchMovie(keyword, pageNum, successFn) {
+    let dc = new window.DataCenter();
+    let ds = new window.DataStore();
+    dc.addDataStore("items", ds);
+    dc.setParameter("_boId", "movieMgrServiceImpl");
+    dc.setParameter('_methodName', 'searchMovie');
+    dc.setParameter('_methodParameterTypes', "String");
+    dc.setParameter("_parameters", "keyword");
+    dc.setParameter("_pageNumber", pageNum);
+    dc.setParameter("_pageSize", pageSize);
+    dc.setParameter("keyword", keyword);
+    //post请求
+    NetUtil.post('/api/commonProcessor/commonMethod', dc, successFn);
+  }
+
 }

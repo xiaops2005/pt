@@ -44,4 +44,6 @@ public interface MovieMgrService {
 	void publish(String ids,String publishFlag);
 	
 	void deleteByIds(String ids);
+	
+	QueryResult searchMovie(String keyword);
 }

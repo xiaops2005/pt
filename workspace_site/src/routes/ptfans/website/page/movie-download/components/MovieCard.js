@@ -6,7 +6,7 @@ import { Tooltip, Card, Layout, Menu, Breadcrumb, Icon } from 'antd';
 import {NavLink} from 'react-router-dom';
 import Ellipsis from 'ant-design-pro/lib/Ellipsis';//在antd3.0以下版本不生效
 // import 'ant-design-pro/dist/ant-design-pro.css';
-
+import '../index.css'
 class MovieCard extends React.Component {
   constructor(props) {
     super(props);
@@ -25,22 +25,21 @@ class MovieCard extends React.Component {
       textAlign: 'left',
     };
     return (
-      <Card style={{ width: 1024,margin: '0 auto'}} hoverable>
+      <Card hoverable>
         {movieList.map((movie) => {
           const {smallImage, id, year, title} = movie
           const name = year + ' ' + title
           const href = '/ptfans/movie-detail/' + id
           console.log(smallImage,id,year,title)
           return(
-          <Card.Grid style={gridStyle}>
+          <Card.Grid style={gridStyle} key={id}>
             <Tooltip placement="leftTop" title={name}>
               <NavLink to={href} target="_blank">
                 <div className="custom-image">
-                  <picture className="picture">
+                  <picture>
                     <source width="100%" height="260" type="image/webp" srcSet={smallImage}/>
                     <img width="100%" height="260"  src={smallImage}/>
                   </picture>
-                    {/*<img width="100%" height="320px" src={movie.smallImage} alt={movie.alt}/>*/}
                 </div>
                 <div className="custom-card">
                   <Ellipsis lines={2}>{name}</Ellipsis>

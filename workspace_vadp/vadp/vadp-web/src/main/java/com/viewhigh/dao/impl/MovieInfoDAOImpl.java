@@ -122,4 +122,10 @@ public class MovieInfoDAOImpl extends BaseHibernateDAO implements IMovieInfoDAO 
 		this.update(sql, new Object[]{publishFlag});
 	}
 
+	@Override
+	public QueryResult searchMovie(String keyword) {
+		String sql = " from MovieInfo where publishFlag=? and (title like ? or originalTitle like ?) order by createTime desc";
+		return this.queryObjectsByPage(sql, new Object[]{"1","%"+keyword+"%","%"+keyword+"%"});
+	}
+
 }

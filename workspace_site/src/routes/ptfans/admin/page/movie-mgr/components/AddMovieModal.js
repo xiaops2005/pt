@@ -119,7 +119,7 @@ class AddMovieModal extends React.Component {
               }],
             })(
               <Search placeholder="豆瓣编号" enterButton="查询豆瓣信息"
-                      onSearch={this.getDoubanInfo} size="large"/>
+                      onSearch={this.getDoubanInfo}/>
             )}
           </FormItem>
           <Layout className="layout">

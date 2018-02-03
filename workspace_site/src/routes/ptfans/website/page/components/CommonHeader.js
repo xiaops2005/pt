@@ -1,8 +1,10 @@
 import React from 'react';
-import { Menu, Icon, Layout } from 'antd';
+import {Menu, Icon, Layout,Input, Select} from 'antd';
 import {NavLink} from 'react-router-dom';
-const { Header } = Layout;
-
+import './index.css';
+const {Header} = Layout;
+const Search = Input.Search;
+const Option = Select.Option;
 class CommonHeader extends React.Component {
   constructor(props) {
     super(props);
@@ -14,36 +16,58 @@ class CommonHeader extends React.Component {
 
   handleClick = (e) => {
     this.setState({
-      current:e.key
+      current: e.key
     })
   }
 
+  search = (keyword) =>{
+    console.log(keyword)
+    window.location.href = 'http://localhost:3000/#/ptfans/movie-search/' + keyword
+  }
+
   render() {
+    // const searchType = (
+    //   <Select defaultValue="电影" style={{ width: 80 }}>
+    //     <Option value="1">电影</Option>
+    //     <Option value="2">游戏</Option>
+    //   </Select>
+    // );
     return (
-      <Header style={{ width: 1024, margin: '0 auto'}}>
-      <Menu
-        theme='light'
-        onClick={this.handleClick}
-        mode="horizontal"
-        selectedKeys={[this.state.current]}
-        style={{ lineHeight: '64px', background: '#ffffff'}}
-      >
-        <Menu.Item key="movie-download">
-          <NavLink to="ptfans/movie-download" target="_self">电影下载</NavLink>
-        </Menu.Item>
-        {/*<Menu.Item key="2">*/}
-          {/*<NavLink to="/movie-recommend" target="_self">电影推荐</NavLink>*/}
-        {/*</Menu.Item>*/}
-        {/*<Menu.Item key="3">*/}
-          {/*<NavLink to="pt-paradise" target="_self">PT乐园</NavLink>*/}
-        {/*</Menu.Item>*/}
-        {/*<Menu.Item key="4">*/}
+      <Header style={{background:'#fff',padding:'0 0 0 10px'}}>
+        <div className="logo">
+          <img src="/ptfans/image/logo.png" style={{width:120,height:48}}/>
+        </div>
+        <Menu
+          theme='light'
+          onClick={this.handleClick}
+          mode="horizontal"
+          selectedKeys={[this.state.current]}
+          style={{lineHeight: '64px'}}
+        >
+          <Menu.Item key="movie-download">
+            <NavLink to="ptfans/movie-download" target="_self">电影下载</NavLink>
+          </Menu.Item>
+          <Menu.Item key="game-download">
+            <NavLink to="ptfans/game-download" target="_self">游戏下载</NavLink>
+          </Menu.Item>
+          <Menu.Item key="pt-paradise">
+            <NavLink to="ptfans/pt-paradise" target="_self">PT乐园</NavLink>
+          </Menu.Item>
+          {/*<Menu.Item key="4">*/}
           {/*<NavLink to="home-theater" target="_self">家庭影院</NavLink>*/}
-        {/*</Menu.Item>*/}
-        <Menu.Item key="feedback">
-          <NavLink to="ptfans/feedback" target="_self">意见反馈</NavLink>
-        </Menu.Item>
-      </Menu>
+          {/*</Menu.Item>*/}
+          <Menu.Item key="feedback">
+            <NavLink to="ptfans/feedback" target="_self">意见反馈</NavLink>
+          </Menu.Item>
+          {/*<span className="ant-divider"/>*/}
+            <Search
+              style={{ width: 350, marginTop: 17 }}
+              // addonBefore={searchType}
+              placeholder="请输入名称"
+              onSearch={this.search}
+              enterButton
+            />
+        </Menu>
       </Header>
     )
   }

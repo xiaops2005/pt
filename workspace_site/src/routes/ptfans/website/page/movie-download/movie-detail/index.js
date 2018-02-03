@@ -5,7 +5,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import CommonHeader from '../../components/CommonHeader';
 import CommonFooter from '../../components/CommonFooter';
-import MovieDetail from './components/MovieDetail';
 import {Card, Layout, Menu, Breadcrumb, Icon} from 'antd';
 import {MovieMgrService} from "../../../process/MovieMgrService";
 const {Header, Content, Footer} = Layout;
@@ -64,7 +63,7 @@ class MovieDownload extends React.Component {
     return (
       <Layout style={{ width: 1024, margin: '0 auto'}}>
         <CommonHeader current="movie-download"/>
-        <Content style={{ padding: 1}}>
+        <Content style={{ padding: 10}}>
           <h4>{titleEx}</h4>
           <picture class="picture">
             <source type="image/webp" srcset={smallImage}/>

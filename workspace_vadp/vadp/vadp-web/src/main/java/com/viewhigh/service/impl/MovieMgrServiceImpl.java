@@ -232,6 +232,11 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 		movieInfoDao.deleteByIds(ids);
 	}
 
+	@Override
+	public QueryResult searchMovie(String keyword) {
+		return movieInfoDao.searchMovie(keyword);
+	}
+
 		
 
 //	{

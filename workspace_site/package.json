@@ -5,7 +5,7 @@
   "dependencies": {
     "numeral": "2.0.6",
     "ant-design-pro": "^1.0.1",
-    "antd": "^3.1.4",
+    "antd": "^3.1.6",
     "axios": "^0.16.2",
     "classnames": "^2.2.5",
     "draftjs-to-html": "^0.7.2",
