@@ -42,7 +42,7 @@ public class TorrentServiceImpl extends BaseServiceImpl implements TorrentServic
 	@Override
 	public void saveOrUpdateTorrent(TorrentInfo ti) {
 		torrentInfoDao.saveOrUpdateTorrent(ti);
-		movieInfoDao.setTorrentFlag(ti.getMovieId(),true);
+		movieInfoDao.setTorrentFlag(ti.getMovieId(),"1");
 	}
 
 	@Override
@@ -52,7 +52,14 @@ public class TorrentServiceImpl extends BaseServiceImpl implements TorrentServic
 
 	@Override
 	public void delTorrent(String id) {
+		TorrentInfo ti = torrentInfoDao.getTorrentInfo(id);
+		String movieId = ti.getMovieId();
+		int count = torrentInfoDao.getTorrentCount(movieId);
+		if(count == 0){
+			movieInfoDao.setTorrentFlag(movieId, "0");
+		}
 		torrentInfoDao.delTorrent(id);
+		
 	}
 
 

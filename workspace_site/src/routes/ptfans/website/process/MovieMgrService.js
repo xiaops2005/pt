@@ -5,29 +5,33 @@ class LoadService {
 
 }
 
-const pageSize = 50
+const pageSize = 40
 export class  MovieMgrService{
-  query(pageNum, successFn) {
+  /**
+   * 查询影片列表
+   * @param pageNum
+   * @param successFn
+   */
+  queryPublishMovieList(pageNum, successFn) {
     let dc = new window.DataCenter();
     let ds = new window.DataStore();
     // ds.setPageNumber(pageNum)
     // ds.setPageSize(pageSize)
-    ds.setRowSetName("com.viewhigh.entity.MovieInfo");
-    let array = [];
-    array.push(array);
-    let rowSet = new window.RowSet(array);
-    dc.addDataStore("mi", ds);
+    dc.addDataStore("items", ds);
     dc.setParameter("_boId", "movieMgrServiceImpl");
-    dc.setParameter('_methodName', 'query');
-    dc.setParameter('_methodParameterTypes', "com.viewhigh.entity.MovieInfo");
-    dc.setParameter("_parameters", "mi");
-    dc.setParameter("_parameters", "mi");
+    dc.setParameter('_methodName', 'queryPublishMovieList');
+    dc.setParameter('_methodParameterTypes', "");
     dc.setParameter("_pageNumber", pageNum);
     dc.setParameter("_pageSize", pageSize);
     //post请求
     NetUtil.post('/api/commonProcessor/commonMethod', dc, successFn);
   }
 
+  /**
+   * 通过影片ID查询影片内容
+   * @param id
+   * @param successFn
+   */
   queryById(id, successFn) {
     let dc = new window.DataCenter();
     let ds = new window.DataStore();

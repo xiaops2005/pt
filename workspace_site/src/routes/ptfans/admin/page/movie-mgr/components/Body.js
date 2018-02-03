@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Table, Modal, Divider } from 'antd';
+import {Button, Table, Modal, Divider, message } from 'antd';
 import {EditableCellSelect, EditableCellInput} from '../../components/EditableTable'
 import AddMovieModal from "./AddMovieModal";
 import AddTorrentModal from "./AddTorrentModal";
@@ -29,7 +29,7 @@ class Body extends React.Component {
         dataIndex: 'id',
         width: '8%',
         render: (text, record) => (
-          <div style={{ color: record.publishFlag ? '#00ff00' : '#ff0000' }}>
+          <div style={{ color: record.publishFlag==='1'  ? '#00ff00' : '#ff0000' }}>
             {text}
           </div>
         )
@@ -66,9 +66,9 @@ class Body extends React.Component {
         width: '10%',
         render: (text, record) => (
           <span>
-            <a style={{ color: record.torrentFlag ? '#00ff00' : '#ff0000' }} onClick={() => this.addTorrent(record.id)}>种子</a>
+            <a style={{ color: record.torrentFlag==='1' ? '#00ff00' : '#ff0000' }} onClick={() => this.addTorrent(record.id)}>种子</a>
             <Divider type="vertical"/>
-            <a style={{ color: record.subtitleFlag ? '#00ff00' : '#ff0000' }} onClick={() => this.addSubTitle(record.id)}>字幕</a>
+            <a style={{ color: record.subtitleFlag=='1'  ? '#00ff00' : '#ff0000' }} onClick={() => this.addSubTitle(record.id)}>字幕</a>
          </span>
         )
       }];
@@ -98,6 +98,47 @@ class Body extends React.Component {
 
   };
 
+  publish = (publishFlag) => {
+    const {selectedRowKeys} = this.state;
+    if (selectedRowKeys.length === 0) {
+      message.warn(`请选择要${publishFlag==='1'? '发布' : '下架'}的行！`);
+    } else {
+      confirm({
+        title: '系统提示',
+        content: `是否要${publishFlag==='1'? '发布' : '下架'}所有选择行数据?`,
+        onOk: () => {
+          console.log(selectedRowKeys)
+            processor.publish(selectedRowKeys,publishFlag,(result) => {
+                message.success(`${publishFlag==='1'? '发布' : '下架'}成功！`);
+                this.props.header.props.onQuery();
+            })
+        },
+        onCancel: () => {
+        }
+      });
+    }
+  };
+
+  delete = () => {
+    const {selectedRowKeys} = this.state;
+    if (selectedRowKeys.length === 0) {
+      message.warn(`请选择要删除的行！`);
+    } else {
+      confirm({
+        title: '系统提示',
+        content: `是否要删除所有选择行数据?`,
+        onOk: () => {
+          processor.deleteByIds(selectedRowKeys,(result) => {
+            message.success('删除成功！');
+            this.state.query();
+          })
+        },
+        onCancel: () => {
+        }
+      });
+    }
+  };
+
   render() {
     const {selectedRowKeys} = this.state;
     const rowSelection = {
@@ -111,7 +152,9 @@ class Body extends React.Component {
     return (
       <div className="vh-body">
         <div className="table-operations">
-          <Button className="btn-primary" onClick={this.addMovie}>添加影片信息</Button>
+          <Button className="btn-primary" onClick={this.addMovie}>豆瓣添加影片信息</Button>
+          <Button className="btn-primary" onClick={this.publish.bind(this, '1')}>发布影片</Button>
+          <Button className="btn-primary" onClick={this.publish.bind(this, '0')}>下架影片</Button>
         </div>
         <Table  bordered className="main-section" scroll={{ x: '100%',y: false}} pagination={{pageSize: 10}} rowSelection={rowSelection} dataSource={this.state.dataSource} columns={this.columns}/>
         <AddMovieModal wrappedComponentRef={(inst) => this.formRef = inst}/>

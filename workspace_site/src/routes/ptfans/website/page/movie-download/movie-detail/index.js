@@ -62,9 +62,9 @@ class MovieDownload extends React.Component {
     const {torrentList} = this.state
     const titleEx = year + ' ' + title + ' ' + originalTitle
     return (
-      <Layout className="layout">
+      <Layout style={{ width: 1024, margin: '0 auto'}}>
         <CommonHeader current="movie-download"/>
-        <Content style={{width: 1024, padding: '1px', margin: '0 auto'}}>
+        <Content style={{ padding: 1}}>
           <h4>{titleEx}</h4>
           <picture class="picture">
             <source type="image/webp" srcset={smallImage}/>

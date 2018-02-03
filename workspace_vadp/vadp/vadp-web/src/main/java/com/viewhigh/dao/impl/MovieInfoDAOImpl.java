@@ -105,10 +105,21 @@ public class MovieInfoDAOImpl extends BaseHibernateDAO implements IMovieInfoDAO 
 	}
 
 	@Override
-	public void setTorrentFlag(String movieId, boolean b) {
-		String torrentFlag = b==true?"1":"0";
-		String sql = "update movie_info set torrent_flag=" + torrentFlag  + " where id=" + movieId;
-		this.update(sql);
+	public void setTorrentFlag(String movieId, String torrentFlag) {
+		String sql = "update movie_info set torrent_flag=? where id=?";
+		this.update(sql,new Object[]{torrentFlag,movieId});
+	}
+
+	@Override
+	public QueryResult queryPublishMovieList() {
+		String sql = " from MovieInfo where publishFlag=? order by createTime desc";
+		return this.queryObjectsByPage(sql, new Object[]{"1"});
+	}
+
+	@Override
+	public void publish(String ids, String publishFlag) {
+		String sql = "update movie_info set publish_flag=? where id in (" + ids + ")";
+		this.update(sql, new Object[]{publishFlag});
 	}
 
 }

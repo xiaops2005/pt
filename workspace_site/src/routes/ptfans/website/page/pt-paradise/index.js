@@ -21,8 +21,8 @@ class PtParadise extends React.Component {
 
   render() {
     return (
-    <Layout className="layout">
-      <CommonHeader current="3"/>
+    <Layout style={{ width: 1024, margin: '0 auto'}}>
+      <CommonHeader current="pt-paradise"/>
       <Content style={{ padding: '1px' }}>
         pt乐园
       </Content>

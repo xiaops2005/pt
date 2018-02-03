@@ -162,14 +162,14 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 		JSONArray casts = obj.getJSONArray("casts");
 		for (int i = 0; i < casts.size(); i++) {
 			JSONObject cast = casts.getJSONObject(i);
-			String castId = cast.getString("id");
+//			String castId = cast.getString("id");
 			String name = cast.getString("name");
 			castsSb.append(name + "/");
-			String castAlt = cast.getString("alt");
-			JSONObject avatars = cast.getJSONObject("avatars");
-			String avatarSmallImage = avatars.getString("small");
-			String avatarMediumImage = avatars.getString("medium");
-			String avatarLargeImage = avatars.getString("large");
+//			String castAlt = cast.getString("alt");
+//			JSONObject avatars = cast.getJSONObject("avatars");
+//			String avatarSmallImage = avatars.getString("small");
+//			String avatarMediumImage = avatars.getString("medium");
+//			String avatarLargeImage = avatars.getString("large");
 		}
 		retObj.put("casts",StringUtils.removeEnd(castsSb.toString(), "/"));
 		// 第几季
@@ -189,10 +189,10 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 		JSONArray directors = obj.getJSONArray("directors");
 		for (int i = 0; i < directors.size(); i++) {
 			JSONObject director = directors.getJSONObject(i);
-			String directorId = director.getString("id");
+//			String directorId = director.getString("id");
 			String name = director.getString("name");
 			directorsSb.append(name + "/");
-			String directorAlt = director.getString("alt");
+//			String directorAlt = director.getString("alt");
 		}
 		retObj.put("directors",StringUtils.removeEnd(directorsSb.toString(), "/"));
 		// 别名
@@ -215,6 +215,21 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 	public MovieInfo queryById(String id) {
 		MovieInfo mi = movieInfoDao.queryById(id);
 		return mi;
+	}
+
+	@Override
+	public QueryResult queryPublishMovieList() {
+		return movieInfoDao.queryPublishMovieList();
+	}
+
+	@Override
+	public void publish(String ids, String publishFlag) {
+		movieInfoDao.publish(ids,publishFlag);
+	}
+
+	@Override
+	public void deleteByIds(String ids) {
+		movieInfoDao.deleteByIds(ids);
 	}
 
 		

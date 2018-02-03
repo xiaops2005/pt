@@ -11,10 +11,11 @@ class MovieMgr extends Component {
   constructor(props) {
     super(props);
     this.state = {}
+    this.query();
   }
   query = (params) => {
     processor.query(params, (data) => {
-      this.setState({dataSource:data.getSinglePrimary().map((item, index) => Object.assign(item, {key: index}))})
+      this.setState({dataSource:data.getSinglePrimary().map((item, index) => Object.assign(item, {key: item.id}))})
     });
   }
 
@@ -27,7 +28,6 @@ class MovieMgr extends Component {
                 wrappedComponentRef={(inst) => this.formRef = inst}/>
         <Body {...this.props}
               dataSource={this.state.dataSource}
-              onExport={this.exportReMateDetail}
               header={this.formRef}/>
       </div>
     )

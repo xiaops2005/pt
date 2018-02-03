@@ -48,5 +48,16 @@ public class TorrentInfoDAOImpl extends BaseHibernateDAO implements ITorrentInfo
 		this.update("delete from torrent_info where id=?", new Object[]{id});
 	}
 
+	@Override
+	public TorrentInfo getTorrentInfo(String id) {
+		return this.getHibernateTemplate().get(TorrentInfo.class, id);
+	}
+
+	@Override
+	public int getTorrentCount(String movieId) {
+		int count = this.getRecordCount("select id from torrent_info", null);
+		return 0;
+	}
+
 
 }

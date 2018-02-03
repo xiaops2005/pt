@@ -67,6 +67,7 @@ class AddMovieModal extends React.Component {
     processor.saveDoubanValue(this.state.movieInfo.id, (result) => {
       if(result.header.code == 1){
         message.success("保存成功")
+        this.setState({visible: false})
       }
     })
   }

@@ -21,9 +21,9 @@ class HomeTheater extends React.Component {
 
   render() {
     return (
-    <Layout className="layout">
-      <CommonHeader current="4"/>
-      <Content style={{ padding: '1px' }}>
+    <Layout style={{ width: 1024, margin: '0 auto'}}>
+      <CommonHeader current="home-theater"/>
+      <Content style={{ padding: '1' }}>
         家庭影院
       </Content>
       <CommonFooter/>

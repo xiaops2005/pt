@@ -22,15 +22,26 @@ public interface MovieMgrService {
 	void saveDoubanValue(String doubanId);
 	
 	/**
-	 * 查询
+	 * 查询所有影片
 	 * @param mi
 	 * @return
 	 */
 	QueryResult query(MovieInfo mi);
+	/**
+	 * 查询已发布的影片
+	 * @param mi
+	 * @return
+	 */
+	QueryResult queryPublishMovieList();
 	/**
 	 * 查询byId
 	 * @param mi
 	 * @return
 	 */
 	MovieInfo queryById(String id);
+	
+	
+	void publish(String ids,String publishFlag);
+	
+	void deleteByIds(String ids);
 }

@@ -16,4 +16,8 @@ public interface ITorrentInfoDAO {
 	List<TorrentInfo> queryTorrents(String movieId);
 
 	void delTorrent(String id);
+
+	TorrentInfo getTorrentInfo(String id);
+
+	int getTorrentCount(String movieId);
 }

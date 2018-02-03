@@ -12,8 +12,13 @@ class CommonFooter extends React.Component {
 
   render() {
     return (
-      <Footer style={{ width: 1024,'text-align': 'center'}}>
-        Ant Design ©2016 Created by Ant UED
+      <Footer style={{'text-align': 'center'}}>
+        <div>
+          Copyright © 2013-2018 PT爱好者 站长统计
+        </div>
+        <div>
+          声明：本站为资讯类网站，我们不提供任何影视的上传、下载、存储、播放，版权归属原电影制作公司
+        </div>
       </Footer>
     )
   }

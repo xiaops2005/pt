@@ -21,7 +21,7 @@ class MovieRecommend extends React.Component {
 
   render() {
     return (
-    <Layout className="layout">
+    <Layout style={{ width: 1024, margin: '0 auto'}}>
       <CommonHeader current="movie-recommend"/>
       <Content style={{ padding: '1px' }}>
         电影推荐

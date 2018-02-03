@@ -42,6 +42,10 @@ public interface IMovieInfoDAO {
 
 	MovieInfo queryById(String id);
 
-	void setTorrentFlag(String movieId, boolean b);
+	void setTorrentFlag(String movieId, String torrentFlag);
+
+	QueryResult queryPublishMovieList();
+
+	void publish(String ids, String publishFlag);
 
 }

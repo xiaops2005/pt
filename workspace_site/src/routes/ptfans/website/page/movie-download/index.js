@@ -9,11 +9,11 @@ import './index.css'
 const { Header, Content, Footer } = Layout;
 const processor = new MovieMgrService()
 
-let pageNum = 1
 class MovieDownload extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      pageNum: 1,
       loading: false,
       movieList : []
     }
@@ -21,21 +21,21 @@ class MovieDownload extends React.Component {
 
   enterLoading = () => {
     this.setState({ loading: true });
-    this.query()
+    this.queryPublishMovieList()
   }
 
   componentWillMount() {
-    this.query();
+    this.queryPublishMovieList();
   }
 
-  query = () => {
-    processor.query(pageNum, (result) => {
-      pageNum++
+  queryPublishMovieList = () => {
+    processor.queryPublishMovieList(this.state.pageNum, (result) => {
       if (result.header.code === 1) {
         if(result.getSinglePrimary().length > 0) {
           this.setState({
             movieList: result.getSinglePrimary().concat(this.state.movieList),
-            loading: false
+            loading: false,
+            pageNum: this.state.pageNum+1
           })
         }else{
           message.warning("最后一页了")
@@ -50,9 +50,9 @@ class MovieDownload extends React.Component {
   render() {
     console.log("render")
     return (
-      <Layout className="layout">
+      <Layout style={{ width: 1024, margin: '0 auto'}}>
         <CommonHeader current="movie-download"/>
-        <Content style={{ padding: '1px' }}>
+        <Content style={{ padding: '1' }}>
           <MovieCard movieList={this.state.movieList}/>
           <Button type="primary" loading={this.state.loading} onClick={this.enterLoading} style={{width:'100%'}}>
             下一页

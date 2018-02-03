@@ -1,16 +1,11 @@
-/**
- * Created by xiaops on 2018/1/16.
- */
 import React from 'react';
-import {connect} from 'react-redux';
 import CommonHeader from '../components/CommonHeader';
 import CommonFooter from '../components/CommonFooter';
 // import Body from './components/Body';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-// import './index.css'
+import { Layout, Input , Form, Button } from 'antd';
 const { Header, Content, Footer } = Layout;
-
-class HomeTheater extends React.Component {
+const { TextArea } = Input;
+class FeedBack extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -19,18 +14,32 @@ class HomeTheater extends React.Component {
 
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.form.validateFields((err, fieldsValue) => {
+      if (err) {
+        return;
+      }
+    })
+  }
+
   render() {
     return (
-    <Layout className="layout">
+    <Layout style={{ width: 1024, margin: '0 auto'}}>
       <CommonHeader current="feedback"/>
-      <Content style={{ width: 1024, padding: '1px', margin: '0 auto'}}>
-        意见反馈
+      <Content style={{ padding: '1'}}>
+        <Form onSubmit={this.handleSubmit}>
+          <TextArea rows={4} placeholder="您的意见是我们最大的动力，感谢您的支持！"/>
+            <Button type="primary" htmlType="submit" style={{width: 1024}}>
+              发送
+            </Button>
+        </Form>
       </Content>
       <CommonFooter/>
     </Layout>
     )
   }
 }
-export default HomeTheater
+export default Form.create()(FeedBack);
 
 
