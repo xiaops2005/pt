@@ -59,6 +59,7 @@ export class  MovieMgrService{
   }
 
   searchMovie(keyword, pageNum, successFn) {
+    console.log('查询第'+pageNum+'页,参数:',keyword)
     let dc = new window.DataCenter();
     let ds = new window.DataStore();
     dc.addDataStore("items", ds);

@@ -22,7 +22,7 @@ class GameDownload extends React.Component {
   render() {
     return (
     <Layout style={{ width: 1024, margin: '0 auto'}}>
-      <CommonHeader current="game-download"/>
+      <CommonHeader {...this.props} current="game-download"/>
       <Content style={{ padding: '1' }}>
         正在建设中。。。
       </Content>

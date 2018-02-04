@@ -26,7 +26,7 @@ class FeedBack extends React.Component {
   render() {
     return (
     <Layout style={{ width: 1024, margin: '0 auto'}}>
-      <CommonHeader current="feedback"/>
+      <CommonHeader {...this.props} current="feedback"/>
       <Content style={{ padding: '1'}}>
         <Form onSubmit={this.handleSubmit}>
           <TextArea rows={4} placeholder="您的意见是我们最大的动力，感谢您的支持！"/>

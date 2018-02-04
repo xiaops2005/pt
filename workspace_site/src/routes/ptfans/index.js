@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Redirect, Route, Switch} from "react-router-dom";
 
 import MovieDownload from "./website/page/movie-download/index.js";
-import MovieDetail from "./website/page/movie-download/movie-detail/index.js";
+import MovieDetail from "./website/page/movie-detail/index.js";
 import PtParadise from "./website/page/pt-paradise/index.js";
 import HomeTheater from "./website/page/game-download/index.js";
 import Feedback from "./website/page/feedback/index.js";

@@ -51,7 +51,7 @@ class MovieDownload extends React.Component {
     console.log("render")
     return (
       <Layout style={{ width: 1024, margin: '0 auto'}}>
-        <CommonHeader current="movie-download"/>
+        <CommonHeader {...this.props} current="movie-download"/>
         <Content style={{ padding: '1' }}>
           <MovieCard movieList={this.state.movieList}/>
           <Button type="primary" loading={this.state.loading} onClick={this.enterLoading} style={{width:'100%'}}>

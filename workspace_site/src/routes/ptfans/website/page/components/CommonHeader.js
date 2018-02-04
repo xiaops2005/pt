@@ -1,7 +1,10 @@
 import React from 'react';
 import {Menu, Icon, Layout,Input, Select} from 'antd';
 import {NavLink} from 'react-router-dom';
+import {browserHistory} from 'React-router'
+import {MovieMgrService} from "../../process/MovieMgrService";
 import './index.css';
+const processor = new MovieMgrService()
 const {Header} = Layout;
 const Search = Input.Search;
 const Option = Select.Option;
@@ -21,8 +24,32 @@ class CommonHeader extends React.Component {
   }
 
   search = (keyword) =>{
-    console.log(keyword)
-    window.location.href = 'http://localhost:3000/#/ptfans/movie-search/' + keyword
+    this.searchMovie(keyword)
+  }
+
+  searchMovie = (keyword) => {
+    processor.searchMovie(keyword,1, (result) => {
+      if (result.header.code === 1) {
+        let url = '/ptfans/movie-search/' + keyword
+        this.props.history.push({
+          pathname:url,
+          state:{movieList:result.getSinglePrimary()}
+        })
+
+        // if(result.getSinglePrimary().length > 0) {
+        //   this.setState({
+        //     movieList: result.getSinglePrimary().concat(this.state.movieList),
+        //     loading: false,
+        //     pageNum: this.state.pageNum+1
+        //   })
+        // }else{
+        //   message.warning("最后一页了")
+        //   this.setState({
+        //     loading: false
+        //   })
+        // }
+      }
+    });
   }
 
   render() {
@@ -47,12 +74,12 @@ class CommonHeader extends React.Component {
           <Menu.Item key="movie-download">
             <NavLink to="ptfans/movie-download" target="_self">电影下载</NavLink>
           </Menu.Item>
-          <Menu.Item key="game-download">
-            <NavLink to="ptfans/game-download" target="_self">游戏下载</NavLink>
-          </Menu.Item>
-          <Menu.Item key="pt-paradise">
-            <NavLink to="ptfans/pt-paradise" target="_self">PT乐园</NavLink>
-          </Menu.Item>
+          {/*<Menu.Item key="game-download">*/}
+            {/*<NavLink to="ptfans/game-download" target="_self">游戏下载</NavLink>*/}
+          {/*</Menu.Item>*/}
+          {/*<Menu.Item key="pt-paradise">*/}
+            {/*<NavLink to="ptfans/pt-paradise" target="_self">PT乐园</NavLink>*/}
+          {/*</Menu.Item>*/}
           {/*<Menu.Item key="4">*/}
           {/*<NavLink to="home-theater" target="_self">家庭影院</NavLink>*/}
           {/*</Menu.Item>*/}
@@ -64,7 +91,7 @@ class CommonHeader extends React.Component {
               style={{ width: 350, marginTop: 17 }}
               // addonBefore={searchType}
               placeholder="请输入名称"
-              onSearch={this.search}
+              onSearch={this.search.bind(this)}
               enterButton
             />
         </Menu>

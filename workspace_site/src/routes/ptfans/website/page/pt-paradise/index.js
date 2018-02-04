@@ -22,7 +22,7 @@ class PtParadise extends React.Component {
   render() {
     return (
     <Layout style={{ width: 1024, margin: '0 auto'}}>
-      <CommonHeader current="pt-paradise"/>
+      <CommonHeader {...this.props} current="pt-paradise"/>
       <Content style={{ padding: '1px' }}>
         正在建设中。。。
       </Content>

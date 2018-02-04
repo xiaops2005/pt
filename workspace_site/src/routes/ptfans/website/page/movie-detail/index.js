@@ -3,10 +3,10 @@
  */
 import React from 'react';
 import {connect} from 'react-redux';
-import CommonHeader from '../../components/CommonHeader';
-import CommonFooter from '../../components/CommonFooter';
+import CommonHeader from '../components/CommonHeader';
+import CommonFooter from '../components/CommonFooter';
 import {Card, Layout, Menu, Breadcrumb, Icon} from 'antd';
-import {MovieMgrService} from "../../../process/MovieMgrService";
+import {MovieMgrService} from "../../process/MovieMgrService";
 const {Header, Content, Footer} = Layout;
 const processor = new MovieMgrService()
 class MovieDownload extends React.Component {
@@ -59,10 +59,11 @@ class MovieDownload extends React.Component {
   render() {
     const {year, title, originalTitle, smallImage, directors, casts, genres, countries, akas} = this.state.movieInfo;
     const {torrentList} = this.state
-    const titleEx = year + ' ' + title + ' ' + originalTitle
+    const name = title===originalTitle?title:title+' '+originalTitle
+    const titleEx = year + ' ' + name
     return (
       <Layout style={{ width: 1024, margin: '0 auto'}}>
-        <CommonHeader current="movie-download"/>
+        <CommonHeader {...this.props} current="movie-download"/>
         <Content style={{ padding: 10}}>
           <h4>{titleEx}</h4>
           <picture class="picture">
