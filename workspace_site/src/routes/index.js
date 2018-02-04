@@ -11,57 +11,61 @@ import AdminPage from "./ptfans/admin";
 
 import "./cost/cost-supervise.css";
 
-const AsyncAdmin = Loadable({
-  loader: () => import(/* webpackChunkName: "admin" */'./admin/')
-});
-
-const AsyncDemo = Loadable({
-  loader: () => import('./demo/')
-});
+// const AsyncAdmin = Loadable({
+//   loader: () => import(/* webpackChunkName: "admin" */'./admin/')
+// });
+//
+// const AsyncDemo = Loadable({
+//   loader: () => import('./demo/')
+// });
 
 const routes = [
-  {
-    exact: true,
-    path: '/',
-    component: Login,
-  },
-  {
-    name: "网站管理",
-    path: '/admin2',
-    component: AsyncAdmin
-  },
-  {
-    name: "网站Demo",
-    path: '/demo',
-    component: AsyncDemo
-  },
-
-  {
-    name: "UI规范",
-    path: '/ui',
-    component: UI
-  },
-  {
-    name: "设计器",
-    path: '/designer',
-    component: Designer
-  },
+  // {
+  //   exact: true,
+  //   path: '/',
+  //   component: Login,
+  // },
+  // {
+  //   name: "网站管理",
+  //   path: '/admin2',
+  //   component: AsyncAdmin
+  // },
+  // {
+  //   name: "网站Demo",
+  //   path: '/demo',
+  //   component: AsyncDemo
+  // },
+  //
+  // {
+  //   name: "UI规范",
+  //   path: '/ui',
+  //   component: UI
+  // },
+  // {
+  //   name: "设计器",
+  //   path: '/designer',
+  //   component: Designer
+  // },
+  // {
+  //   name: "PT爱好者",
+  //   path: '/',
+  //   component: App
+  // },
   {
     name: "PT爱好者",
-    path: '/ptfans',
+    path: '/',
     component: PtFans
   },
-  {
-    name: "管理",
-    path: '/admin',
-    component: AdminPage
-  },
-  {
-    exact: true,
-    path: '/home',
-    component: Home,
-
-  }
+  // {
+  //   name: "管理",
+  //   path: '/admin',
+  //   component: AdminPage
+  // },
+  // {
+  //   exact: true,
+  //   path: '/home',
+  //   component: Home,
+  // }
 
 ];
 export  default routes;

@@ -2,6 +2,9 @@ package com.viewhigh.entity;
 
 
 import com.viewhigh.excel.domain.Base;
+
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -13,6 +16,8 @@ import java.util.Date;
 @XmlRootElement
 @Entity
 @Table(name = "movie_info")
+@DynamicInsert(true)
+@DynamicUpdate(true)
 public class MovieInfo {
 
 	@Id

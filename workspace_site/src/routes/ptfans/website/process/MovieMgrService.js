@@ -6,6 +6,7 @@ class LoadService {
 }
 
 const pageSize = 40
+const pageSizeSearch = 10
 export class  MovieMgrService{
   /**
    * 查询影片列表
@@ -68,8 +69,21 @@ export class  MovieMgrService{
     dc.setParameter('_methodParameterTypes', "String");
     dc.setParameter("_parameters", "keyword");
     dc.setParameter("_pageNumber", pageNum);
-    dc.setParameter("_pageSize", pageSize);
+    dc.setParameter("_pageSize", pageSizeSearch);
     dc.setParameter("keyword", keyword);
+    //post请求
+    NetUtil.post('/api/commonProcessor/commonMethod', dc, successFn);
+  }
+
+  postFeedback(content, successFn) {
+    let dc = new window.DataCenter();
+    let ds = new window.DataStore();
+    dc.addDataStore("items", ds);
+    dc.setParameter("_boId", "movieMgrServiceImpl");
+    dc.setParameter('_methodName', 'postFeedback');
+    dc.setParameter('_methodParameterTypes', "String");
+    dc.setParameter("_parameters", "content");
+    dc.setParameter("content", content);
     //post请求
     NetUtil.post('/api/commonProcessor/commonMethod', dc, successFn);
   }

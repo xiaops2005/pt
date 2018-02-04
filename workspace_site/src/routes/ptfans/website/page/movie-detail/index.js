@@ -5,7 +5,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import CommonHeader from '../components/CommonHeader';
 import CommonFooter from '../components/CommonFooter';
-import {Card, Layout, Menu, Breadcrumb, Icon} from 'antd';
+import {Card, Layout, Menu, Breadcrumb, Icon, Rate } from 'antd';
 import {MovieMgrService} from "../../process/MovieMgrService";
 const {Header, Content, Footer} = Layout;
 const processor = new MovieMgrService()
@@ -42,7 +42,6 @@ class MovieDownload extends React.Component {
   queryTorrents = (id) => {
     processor.queryTorrents(id, (result) => {
       if (result.header.code === 1) {
-        debugger
         this.setState({torrentList: result.getSinglePrimaryList()})
       }
     });
@@ -57,7 +56,12 @@ class MovieDownload extends React.Component {
   // }
 
   render() {
-    const {year, title, originalTitle, smallImage, directors, casts, genres, countries, akas} = this.state.movieInfo;
+    const {year, title, originalTitle, smallImage, directors, casts, genres, countries, akas,rating} = this.state.movieInfo;
+    const ratingStr = rating===0?'暂无评分':`${rating}分`
+    const ratingStar = Math.round(rating*2)/2
+    console.log('ratingStr',ratingStr)
+
+    console.log('ratingStar',ratingStar)
     const {torrentList} = this.state
     const name = title===originalTitle?title:title+' '+originalTitle
     const titleEx = year + ' ' + name
@@ -84,6 +88,9 @@ class MovieDownload extends React.Component {
           </div>
           <div>
             又名：{akas}
+          </div>
+          <div>
+            评分：<Rate count="10" allowHalf disabled value={ratingStar} />  {ratingStr}
           </div>
           <p>
             <div dangerouslySetInnerHTML={this.createMarkup()}/>

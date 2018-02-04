@@ -29,8 +29,7 @@ class MovieCard extends React.Component {
         {movieList.map((movie) => {
           const {smallImage, id, year, title} = movie
           const name = year + ' ' + title
-          const href = '/ptfans/movie-detail/' + id
-          console.log(smallImage,id,year,title)
+          const href = '//movie-detail/' + id
           return(
           <Card.Grid style={gridStyle} key={id}>
             <Tooltip placement="leftTop" title={name}>

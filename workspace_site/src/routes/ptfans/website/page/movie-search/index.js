@@ -1,6 +1,3 @@
-/**
- * Created by xiaops on 2018/1/16.
- */
 import React from 'react';
 import {connect} from 'react-redux';
 import CommonHeader from '../components/CommonHeader';
@@ -50,7 +47,6 @@ class MovieSearch extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    debugger
     console.log('componentWillReceiveProps', nextProps)
     if (nextProps.location.state != undefined) {
       let {movieList} = nextProps.location.state
@@ -108,7 +104,7 @@ class MovieSearch extends React.Component {
         <Content style={{ padding: 10}}>
           {movieList.map((movie) => {
             let {id, title, originalTitle, directors, casts, genres, countries, akas, smallImage} = movie
-            const href = '/ptfans/movie-detail/' + id
+            const href = '//movie-detail/' + id
             return (
               <div>
                 <Layout>

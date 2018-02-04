@@ -30,7 +30,7 @@ class CommonHeader extends React.Component {
   searchMovie = (keyword) => {
     processor.searchMovie(keyword,1, (result) => {
       if (result.header.code === 1) {
-        let url = '/ptfans/movie-search/' + keyword
+        let url = '//movie-search/' + keyword
         this.props.history.push({
           pathname:url,
           state:{movieList:result.getSinglePrimary()}
@@ -72,7 +72,7 @@ class CommonHeader extends React.Component {
           style={{lineHeight: '64px'}}
         >
           <Menu.Item key="movie-download">
-            <NavLink to="ptfans/movie-download" target="_self">电影下载</NavLink>
+            <NavLink to="//movie-download" target="_self">电影下载</NavLink>
           </Menu.Item>
           {/*<Menu.Item key="game-download">*/}
             {/*<NavLink to="ptfans/game-download" target="_self">游戏下载</NavLink>*/}
@@ -84,7 +84,7 @@ class CommonHeader extends React.Component {
           {/*<NavLink to="home-theater" target="_self">家庭影院</NavLink>*/}
           {/*</Menu.Item>*/}
           <Menu.Item key="feedback">
-            <NavLink to="ptfans/feedback" target="_self">意见反馈</NavLink>
+            <NavLink to="//feedback" target="_self">意见反馈</NavLink>
           </Menu.Item>
           {/*<span className="ant-divider"/>*/}
             <Search

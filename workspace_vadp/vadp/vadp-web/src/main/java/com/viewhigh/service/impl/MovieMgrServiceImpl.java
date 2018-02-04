@@ -66,6 +66,8 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 			}
 		    movieInfoDao.addResponseJson(doubanId, resultJson);
 		    return this.response2json(resultJson);
+	    }else{
+	    	System.out.println("豆瓣返回API返回CODE："+code);
 	    }
 	    return null;
 	}
@@ -77,7 +79,7 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 			String responseJson = mi.getResponseJson();
 			JSONObject object = this.response2json(responseJson);
 			MovieInfo tmpMi = JSON.parseObject(object.toString(),MovieInfo.class);
-			BeanUtils.copyProperties(tmpMi, mi, "id","responseJson","createTime","updateTime");
+			BeanUtils.copyProperties(tmpMi, mi, "id","responseJson","createTime","updateTime","subtitleFlag","torrentFlag","publishFlag");
 			if(mi.getCreateTime() == null){
 				mi.setCreateTime(new Date());
 			}
@@ -235,6 +237,11 @@ public class MovieMgrServiceImpl extends BaseServiceImpl implements MovieMgrServ
 	@Override
 	public QueryResult searchMovie(String keyword) {
 		return movieInfoDao.searchMovie(keyword);
+	}
+
+	@Override
+	public void postFeedback(String content) {
+		movieInfoDao.postFeedback(content);
 	}
 
 		

@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.google.common.collect.Lists;
 import com.viewhigh.dao.IBdMaterialsDao;
 import com.viewhigh.dao.IMovieInfoDAO;
+import com.viewhigh.entity.Feedback;
 import com.viewhigh.entity.MovieInfo;
 import com.viewhigh.excel.domain.Base;
 import com.viewhigh.excel.domain.entity.BdDept;
@@ -126,6 +127,13 @@ public class MovieInfoDAOImpl extends BaseHibernateDAO implements IMovieInfoDAO 
 	public QueryResult searchMovie(String keyword) {
 		String sql = " from MovieInfo where publishFlag=? and (title like ? or originalTitle like ?) order by createTime desc";
 		return this.queryObjectsByPage(sql, new Object[]{"1","%"+keyword+"%","%"+keyword+"%"});
+	}
+
+	@Override
+	public void postFeedback(String content) {
+		Feedback fb = new Feedback();
+		fb.setContent(content);
+		this.addObject(fb);
 	}
 
 }

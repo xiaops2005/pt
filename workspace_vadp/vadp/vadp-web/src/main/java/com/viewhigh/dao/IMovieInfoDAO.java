@@ -50,4 +50,6 @@ public interface IMovieInfoDAO {
 
 	QueryResult searchMovie(String keyword);
 
+	void postFeedback(String content);
+
 }
