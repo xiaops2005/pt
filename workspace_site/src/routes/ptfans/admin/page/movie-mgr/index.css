@@ -3,9 +3,10 @@
   overflow: hidden !important;
 }
 
-/* 页面组件 不显示滚动条 */
+/* 页面组件 显示滚动条 */
 .vh-content {
-  overflow: hidden;
+  overflow: auto;
+  height: 500px;
 }
 
 /* 数据操作按钮 */

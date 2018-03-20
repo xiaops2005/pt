@@ -29,6 +29,7 @@ export class  MovieMgrService{
   }
 
   query(params, successFn) {
+    console.log('query',params)
     var dc = new window.DataCenter();
     var ds = new window.DataStore();
     ds.setRowSetName("com.viewhigh.entity.MovieInfo");

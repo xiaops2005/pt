@@ -15,6 +15,7 @@ class MovieMgr extends Component {
   }
   query = (params) => {
     processor.query(params, (data) => {
+      console.log('query result',data.getSinglePrimary())
       this.setState({dataSource:data.getSinglePrimary().map((item, index) => Object.assign(item, {key: item.id}))})
     });
   }
@@ -22,7 +23,7 @@ class MovieMgr extends Component {
   render() {
     console.log("movie-mgr render")
     return (
-      <div>
+      <div className="vh-content">
         <Header {...this.props}
                 onQuery={this.query}
                 wrappedComponentRef={(inst) => this.formRef = inst}/>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Menu, Icon, Layout,Input, Select} from 'antd';
 import {NavLink} from 'react-router-dom';
-import {browserHistory} from 'React-router'
+import {browserHistory} from 'react-router'
 import {MovieMgrService} from "../../process/MovieMgrService";
 import './index.css';
 const processor = new MovieMgrService()
